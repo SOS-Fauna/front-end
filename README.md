@@ -9,7 +9,7 @@ Bem-vindo à documentação da S.O.S Fauna, uma plataforma de denúncia de maus 
 3. [Como Fazer uma Denúncia](#como-fazer-uma-denúncia)
 4. [Privacidade e Segurança](#privacidade-e-segurança)
 5. [Para Desenvolvedores](#para-desenvolvedores)
-6. [Contribuindo](#contribuindo)
+6. [Contribuindo](#Colaboradores)
 
 ## Introdução
 
