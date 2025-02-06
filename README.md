@@ -72,7 +72,7 @@ A privacidade e a segurança dos usuários são nossas prioridades. Todas as den
 [Github](https://github.com/isabelly-remigio)
 #### Wladson Thiago - 
 [Linkedin](https://www.linkedin.com/in/wladson-thiago-oliveira-5a78621a1/)
-[Github](https://github.com/)
+[Github](https://github.com/wladsonT)
 #### Danielle Ferreira - 
 [Linkedin](https://www.linkedin.com/in/danielle-ferreirads/)
 [Github](https://github.com/DanielleFS)
