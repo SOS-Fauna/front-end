@@ -1,1 +1,0 @@
-## Aqui ficarão todos os arquivos que gerenciam as rotas da nossa aplicação.
