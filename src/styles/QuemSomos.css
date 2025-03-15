@@ -31,14 +31,20 @@
     justify-items: center;
 }
 
-.NossoTime h1 {
-    margin-bottom: 3rem;
-}
 
-/* confirmar se vai tirar da página */
-/* .NossoTime p {
-    margin-bottom: 2rem;
-} */
+/* linha decorativa no texto */
+.NossoTime {
+    display: flex;
+    align-items: center;
+  }
+  .NossoTime::before,
+  .NossoTime::after {
+    content: "";
+    flex: 1;
+    height: 0.15rem; /* Espessura da linha */
+    background-color: #FD7C17; /* Cor da linha */
+    margin: 0 2.5rem; /* Espaço entre a linha e o texto */
+  }
 
 .membros img {
     width: 100px;
@@ -64,6 +70,7 @@
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 2rem;
     text-align: center;
+    margin-top: 3rem;
 }
 
 

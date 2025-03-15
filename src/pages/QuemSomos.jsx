@@ -35,10 +35,8 @@ function QuemSomos() {
             </div>
 
             <div className='NossoTime'>
-                <h1>Nosso Time</h1>
-
-                {/* confirmar se vai retirar da página */}
-                {/* <p>Idealizadores do projeto</p> */}
+                <h1>Nosso Time </h1>
+                
             </div>
 
             <section className='secIntegrantes'>
