@@ -1,13 +1,14 @@
-import QuemSomos from "./pages/QuemSomos"
-import ServicosVeterinarios from "./pages/ServicosVeterinarios"
+import { BrowserRouter as Router } from "react-router-dom";
+import Header from "./components/Header.jsx";
+import AppRoutes from "./routes/AppRoutes.jsx";
 
 function App() {
   return (
-    <>
-      <h1>Home page aqui</h1>
-      <ServicosVeterinarios />
-    </>
-  )
+    <Router>  {/* Router deve englobar tudo! */}
+      <Header />
+      <AppRoutes />
+    </Router>
+  );
 }
 
-export default App
+export default App;

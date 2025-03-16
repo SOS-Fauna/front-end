@@ -10,21 +10,26 @@
     margin-bottom: 1.5rem;
 }
 
-.imgPata {
-    position: absolute;
-    top: 0%;
-    right: 0%;
+.container-img-pata{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    background-color: #FD7C17;
 }
 
-.imgPata img{
-    height: 10rem;
+.imgPata {
+    width: 200px;
+    height: 200px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 88%;
+    transform: translateY(40%);
 }
 
 .NossoTime {
     font-size: 1.2rem;
     justify-items: center;
 }
-
 
 /* linha decorativa no texto */
 .NossoTime {
@@ -39,7 +44,7 @@
     background-color: #FD7C17; /* Cor da linha */
     margin: 0 2.5rem; /* Espaço entre a linha e o texto */
   }
-
+  
 .membros img {
     width: 100px;
     height: 100px;
@@ -73,3 +78,4 @@
     margin: 6% 30%;
 
 }
+

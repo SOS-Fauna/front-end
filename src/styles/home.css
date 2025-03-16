@@ -1,0 +1,86 @@
+/*Estilização da section de denuncia */
+@font-face{
+  font-family: 'DarumadropOne';
+  src: url('../assets/fonts/DarumadropOne-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+#denuncia-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  padding: 20px 20px;
+  width: 80%;
+  border-radius: 50px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  border: 2px solid #ffa500;
+  
+  transform: translateY(-50%);
+  
+}
+
+/*Adiciono estilo ao paragrafo */
+#denuncia-container .estilo-paragrafo {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.2rem;
+}
+
+/*Adiciono estilos ao botão */
+.denuncia-btn {
+  background: #ff8c00;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  min-width: 200px;
+  padding: 15px 35px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.denuncia-btn:hover {
+  background: #e07b00;
+}
+
+
+/*Estilização do banner */
+
+/* Adiciono estilo para a section que engloba todos os elementos */
+
+#banner {
+  width: 100vw;
+  transform: translateY(-9%);
+}
+
+/* Adiciono estilos para o container que armazena a div de textos e a imagem*/
+.container-banner {
+  display: flex;
+  align-items: center;
+  width: 1450px;
+  margin: 0 auto;
+
+}
+
+/* Adiciono fonts para o título */
+
+.titulo {
+  font-family: 'DarumadropOne', sans-serif;
+  font-size: 50px;
+  margin-bottom: 50px;
+}
+
+
+/* Adiciono fonts para o paragrafo*/
+
+.estilo-paragrafo {
+  font-family: 'Poppins-Black', sans-serif;
+  font-size: 1.2rem;
+}

@@ -11,16 +11,23 @@ import ftTallys from '../assets/integrantes/tallys.png'
 import ftWlad from '../assets/integrantes/wlad.png'
 
 import logoPata from '../assets/logo-pag.png'
-
+import { useEffect } from "react";
 
 function QuemSomos() {
-
+    /*Retira barra de rolagem horizontal    */
+    useEffect(() => {
+        document.body.style.overflowX = "hidden";
+        return () => {
+          document.body.style.overflowX = "auto"; // Restaura o padrão ao desmontar
+        };
+      }, []);
     return (
 
         <div>
             <div className='imgPata'>
                 <img src={logoPata} alt="logo pata" />
             </div>
+
 
             <div className='textQuemSomos'>
 
