@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+
 .textQuemSomos {
     font-size: 1.1rem;
     margin-left: 15%;
@@ -16,15 +17,22 @@
     margin-bottom: 1.5rem;
 }
 
-.imgPata {
-    position: absolute;
-    top: 0%;
-    right: 0%;
+.container-img-pata{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    background-color: #FD7C17;
 }
 
-.imgPata img{
-    height: 10rem;
+.imgPata {
+    width: 200px;
+    height: 200px;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 88%;
+    transform: translateY(40%);
 }
+
 
 .NossoTime {
     font-size: 1.2rem;
@@ -34,11 +42,6 @@
 .NossoTime h1 {
     margin-bottom: 3rem;
 }
-
-/* confirmar se vai tirar da página */
-/* .NossoTime p {
-    margin-bottom: 2rem;
-} */
 
 .membros img {
     width: 100px;
@@ -73,3 +76,4 @@
     margin: 6% 30%;
 
 }
+
