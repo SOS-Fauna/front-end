@@ -1,4 +1,4 @@
-# 🐾 S.O.S-Fauna-Front
+# 🐾 S.O.S Fauna
 
 Bem-vindo à documentação oficial do **S.O.S Fauna**, uma plataforma dedicada a combater maus-tratos contra animais. Neste guia, você encontrará informações sobre como utilizar a plataforma, suas funcionalidades, como contribuir para o projeto e muito mais.
 
@@ -46,8 +46,8 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 
 ### 🔧 Requisitos do Sistema
 
-- **React JS**
 - **Node.js** v14 ou superior
+- **React JS**
 - **Banco de dados SQL**
 - **JVM** (Java Virtual Machine)
 
@@ -55,27 +55,16 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/DanielleFS/S.O.S-Fauna-Front
+   git clone https://github.com/Helelys/S.O.S-Fauna
+
 
 
 ## 🌟 Colaboradores
 
-### 🖥️ Frontend
-
-#### Danielle Ferreira  
-[🔗 Linkedin](https://www.linkedin.com/in/danielle-ferreirads/) | [🐙 Github](https://github.com/DanielleFS)
-
-#### Isabelly Remígio  
-[🔗 Linkedin](https://www.linkedin.com/in/isabelly-remigio/) | [🐙 Github](https://github.com/isabelly-remigio)
-
-#### Wladson Thiago  
-[🔗 Linkedin](https://www.linkedin.com/in/wladson-thiago-oliveira-5a78621a1/) | [🐙 Github](https://github.com/wladsonT)
-
-
 ### 💻 Backend
 
-#### Armando Alves  
-[🔗 Linkedin](https://www.linkedin.com/in/armando-alves-878356151/) | [🐙 Github](https://github.com/ArmandoMartins1)
+#### Tallys Labanca  
+[🔗 Linkedin](https://www.linkedin.com/in/tallys-labanca/) | [🐙 Github](https://github.com/helelys)
 
 #### Arthur Moura  
 [🔗 Linkedin](https://www.linkedin.com/in/arthur-moura-20462524b/) | [🐙 Github](https://github.com/ArthurMouraa)
@@ -86,7 +75,23 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 #### Maycon Gabriel  
 [🔗 Linkedin](https://www.linkedin.com/in/maycon-gabriel-388421214/) | [🐙 Github](https://github.com/May154)
 
-#### Tallys Labanca  
-[🔗 Linkedin](https://www.linkedin.com/in/tallys-labanca/) | [🐙 Github](https://github.com/helelys)
+#### Armando Alves  
+[🔗 Linkedin](https://www.linkedin.com/in/armando-alves-878356151/) | [🐙 Github](https://github.com/ArmandoMartins1)
+
+---
+
+### 🖥️ Frontend
+
+#### Isabelly Remígio  
+[🔗 Linkedin](https://www.linkedin.com/in/isabelly-remigio/) | [🐙 Github](https://github.com/isabelly-remigio)
+
+#### Wladson Thiago  
+[🔗 Linkedin](https://www.linkedin.com/in/wladson-thiago-oliveira-5a78621a1/) | [🐙 Github](https://github.com/wladsonT)
+
+#### Danielle Ferreira  
+[🔗 Linkedin](https://www.linkedin.com/in/danielle-ferreirads/) | [🐙 Github](https://github.com/DanielleFS)
+
+---
 
 🌱 **Agradecemos a todos os colaboradores pelo esforço e dedicação para tornar o projeto S.O.S Fauna uma realidade!**
+
