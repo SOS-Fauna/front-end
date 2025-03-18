@@ -93,6 +93,5 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 
 ---
 
-🌱 **Agradecemos a todos os colaboradores pelo esforço e dedicação para tornar o projeto S.O.S Fauna uma realidade!**.
-.
+🌱 **Agradecemos a todos os colaboradores pelo esforço e dedicação para tornar o projeto S.O.S Fauna uma realidade!**
 
