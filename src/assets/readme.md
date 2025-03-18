@@ -1,0 +1,1 @@
+## Aqui estão todos os assets do projeto, que serão usados ​​pelo aplicativo, imagens, fontes, mocks, entre outros.
