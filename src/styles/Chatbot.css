@@ -1,0 +1,32 @@
+/* Chat.css */
+.chat-container {
+    width: 90%; /* Largura relativa */
+    max-width: 400px; /* Largura máxima */
+    height: 80vh; /* Altura relativa à viewport */
+    border: 1px solid #ccc;
+    display: flex;
+    flex-direction: column;
+    margin: 20px auto; /* Centraliza o chat */
+  }
+  
+  .chat-mensagens {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+  }
+  
+  .chat-input {
+    display: flex;
+    padding: 10px;
+  }
+  
+  .chat-input input {
+    flex-grow: 1;
+    padding: 5px;
+  }
+  
+  .chat-input button {
+    padding: 5px 10px;
+  }
+  
+  

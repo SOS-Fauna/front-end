@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import '../../styles/Chatbot.css'
 
 export function Chatbot() {
   const [etapa, setEtapa] = useState(0);
@@ -14,7 +15,7 @@ export function Chatbot() {
   const [mensagens, setMensagens] = useState([
     "Olá, seja bem-vindo! Vamos iniciar o seu processo de forma rápida. Clique para iniciar."
   ]);
-  
+
   const [visivel, setVisivel] = useState(true);
 
 
@@ -84,18 +85,18 @@ export function Chatbot() {
   const voltarEtapa = () => {
     if (etapa > 0) {
       setEtapa(etapa - 1);
-      setMensagens(mensagens.slice(0, -1)); 
+      setMensagens(mensagens.slice(0, -1));
     }
   };
 
-  
+
   const fecharChat = () => {
-    setVisivel(false); 
+    setVisivel(false);
   };
 
   //Atenção:Não renderiza o componente
   if (!visivel) {
-    return null; 
+    return null;
   }
 
   return (
