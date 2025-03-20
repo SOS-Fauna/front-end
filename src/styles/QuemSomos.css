@@ -1,81 +1,79 @@
 .textQuemSomos {
     font-size: 1.1rem;
-    margin-left: 15%;
-    margin-right: 15%;
-    margin-bottom: 5%;
-}
-
-.textQuemSomos h1 {
-    color: #FD7C17;
-    margin-bottom: 1.5rem;
-}
-
-.container-img-pata{
-    display: flex;
-    justify-content: end;
-    width: 100%;
-    background-color: #FD7C17;
-}
-
-.imgPata {
-    width: 200px;
-    height: 200px;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 88%;
-    transform: translateY(40%);
-}
-
-.NossoTime {
-    font-size: 1.2rem;
-    justify-items: center;
-}
-
-/* linha decorativa no texto */
-.NossoTime {
+    margin-left: 15vw;
+    margin-right: 12vw;
+    margin-bottom: 10vh;
+    padding-top: 10vh;
+  }
+  
+  .textQuemSomos h1 {
+    color: #fD7C17;
+    margin-bottom: 1vw;
+    font-size: clamp(28px, 3.5vw, 35px);
+    /* valor mínimo, "ideal", e máximo que o navegador se ajustará para ficar responsivo */
+  }
+  
+  /* linha decorativa no texto */
+  .NossoTime h1{
+      font-size: clamp(28px, 3.5vw, 35px);
+    }
+  
+  .NossoTime {
     display: flex;
     align-items: center;
   }
+  
   .NossoTime::before,
   .NossoTime::after {
     content: "";
     flex: 1;
     height: 0.15rem; /* Espessura da linha */
-    background-color: #FD7C17; /* Cor da linha */
+    background-color: #fD7c17; /* Cor da linha */
     margin: 0 2.5rem; /* Espaço entre a linha e o texto */
   }
   
-.membros img {
-    width: 100px;
-    height: 100px;
+  .membros img {
+    width: 7vw;
+    height: 7vw;
     border-radius: 50%;
-}
-
-.membros h4 {
-    color: #FD7C17;
-}
-
-.membros p {
-    font-size: small;
-}
-
-.secIntegrantes {
+  }
+  
+  .membros h4 {
+    color: #fd7c17;
+    font-size: clamp(12px, 0.8vw, 20px);
+  }
+  
+  .membros p {
+    font-size: clamp(10px, 0.7vw, 15px);
+  }
+  
+  .secIntegrantes {
     display: flex;
     justify-content: center;
-}
-
-.itensIntegrantes {
+    padding-top: 6vh;
+  }
+  
+  .itensIntegrantes {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2rem;
+    gap: 2vw;
     text-align: center;
-    margin-top: 3rem;
-}
-
-.textrodape {
+  }
+  
+  .textrodape {
     font-size: 1.1rem;
     text-align: center;
-    margin: 6% 30%;
-
-}
-
+    margin: 10vh 25vw;
+  }
+  
+  @media (max-width: 700px) {
+    .itensIntegrantes {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+  
+  @media (max-width: 500px) {
+    .itensIntegrantes {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
