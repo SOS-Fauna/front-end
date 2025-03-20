@@ -8,7 +8,6 @@ import ftIsa from '../assets/integrantes/isa.png'
 import ftLuiz from '../assets/integrantes/luiz.png'
 import ftMaycon from '../assets/integrantes/maycon.png'
 import ftTallys from '../assets/integrantes/tallys.png'
-import ftWlad from '../assets/integrantes/wlad.png'
 
 import logoPata from '../assets/logo-pag.png'
 import { useEffect } from "react";
@@ -24,9 +23,9 @@ function QuemSomos() {
     return (
 
         <div>
-            <div className='imgPata'>
+            {/* <div className='imgPata'>
                 <img src={logoPata} alt="logo pata" />
-            </div>
+            </div> */}
 
 
             <div className='textQuemSomos'>
@@ -55,7 +54,6 @@ function QuemSomos() {
                     <Integrante foto={ftLuiz} nome="Luiz Filipe" descricao="Desenvolvedor Back-end" />
                     <Integrante foto={ftMaycon} nome="Maycon Daniel" descricao="Desenvolvedor Back-end" />
                     <Integrante foto={ftTallys} nome="Tallys Labanca" descricao="Desenvolvedor Back-end" />
-                    <Integrante foto={ftWlad} nome="Wladson Thiago" descricao="Desenvolvedor Front-end" />
                 </div>
             </section>
 
