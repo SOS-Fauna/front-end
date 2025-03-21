@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/Chatbot.css'
 
-export function Chatbot() {
+export function ChatbotBase() {
   const [etapa, setEtapa] = useState(0);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");

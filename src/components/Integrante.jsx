@@ -5,6 +5,7 @@ function Integrante({ foto, nome, descricao }) {
             <h4>{nome}</h4>
             <p>{descricao}</p>
         </div>
+        
     )
 }
 
