@@ -1,95 +1,120 @@
 .page-adocao {
-    padding: 20px;
-    padding-top: 80px;
-    max-width: 1200px;
-    margin: 0 auto;
-    font-family: Arial, sans-serif;
-  }
-  
-  .conteudo-principal {
-    display: flex;
-    gap: 20px;
-    margin-top: 20px;
-    align-items: flex-start;
-  }
-  
-  .cards-container {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
-    padding: 10px;
+  padding: 20px;
+  padding-top: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+.conteudo-principal {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 20px;
+  align-items: flex-start;
+}
+
+/* Grid dos cards - Padrão */
+.cards-container {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px;
+}
+
+/* Ajuste do layout flexível */
+.container-animais {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+.descricao-container {
+  text-align: left;
+  margin-bottom: 40px;
+  padding: 20px;
+  max-width: 1200px;
+  margin-top: 2rem;
+}
+
+.descricao-container h1 {
+  font-size: 2.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.descricao-container p {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 0;
+}
+
+/* Responsividade para telas médias (até 1200px) */
+@media (max-width: 1200px) {
+  .descricao-container {
+    padding: 20px 15px;
   }
 
-  .container-animais {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: center;
-    padding: 20px;
-}
-  
-  .descricao-container {
-    text-align: left;
-    margin-bottom: 40px;
-    padding: 20px;
-    max-width: 1200px;
-    margin-top: 2rem;
-  }
-  
   .descricao-container h1 {
-    font-size: 2.5rem;
-    color: #333;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
   }
-  
+
   .descricao-container p {
-    font-size: 1.1rem;
-    color: #666;
-    margin: 0;
+    font-size: 1rem;
   }
-  
-  @media (max-width: 1200px) {
-    .descricao-container {
-      padding: 20px 15px;
-    }
-  
-    .descricao-container h1 {
-      font-size: 2.2rem;
-    }
-  
-    .descricao-container p {
-      font-size: 1rem;
-    }
+
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
   }
-  
-  @media (max-width: 768px) {
-    .descricao-container {
-      padding: 20px 10px;
-      margin-top: 3rem;
-    }
-  
-    .descricao-container h1 {
-      font-size: 2rem;
-    }
-  
-    .descricao-container p {
-      font-size: 0.95rem;
-    }
+}
+
+/* Responsividade para tablets (até 768px) */
+@media (max-width: 768px) {
+  .conteudo-principal {
+    flex-direction: column;
+    align-items: center;
   }
-  
-  @media (max-width: 480px) {
-    .descricao-container {
-      padding: 15px 10px;
-      margin-top: 2rem;
-    }
-  
-    .descricao-container h1 {
-      font-size: 1.8rem;
-    }
-  
-    .descricao-container p {
-      font-size: 0.9rem;
-    }
+
+  .descricao-container {
+    padding: 20px 10px;
+    margin-top: 3rem;
+    text-align: center;
   }
-  
+
+  .descricao-container h1 {
+    font-size: 2rem;
+  }
+
+  .descricao-container p {
+    font-size: 0.95rem;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .descricao-container {
+    padding: 15px 10px;
+    margin-top: 2rem;
+    text-align: center;
+  }
+
+  .descricao-container h1 {
+    font-size: 1.8rem;
+  }
+
+  .descricao-container p {
+    font-size: 0.9rem;
+  }
+
+  .cards-container {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
+  }
+}

@@ -1,0 +1,229 @@
+.perfil-container {
+    max-width: 1120px;
+    margin: auto;
+    padding: 8rem 2rem;
+    padding-top: 12vh;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    gap: 2rem;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-dados h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #4d4d4d;
+    margin-bottom: 0.5rem;
+}
+
+.perfil-dados h1 {
+    font-size: 1.5rem;
+    color: #000000;
+    font-weight: 600;
+    cursor: text;
+    padding: 5px;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s;
+}
+
+.perfil-dados h1:focus {
+    border-color: #FD7C17;
+    outline: none;
+}
+
+.perfil-dados p {
+    font-size: 1rem;
+    color: #666;
+}
+
+.perfil-imagem {
+    width: 150px;
+    height: 150px;
+    position: relative;
+}
+
+.perfil-contato-arroba {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.editar-info {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.perfil-contato-arroba-conteudo {
+    display: flex;
+    gap: 6rem; 
+}
+
+.perfil-contato, .perfil-arroba {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.perfil-contato img, .perfil-arroba img {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.perfil-contato span, .perfil-arroba span {
+    font-size: 1.1rem;
+    color: #444;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.perfil-contato span:hover, .perfil-arroba span:hover {
+    color: #FD7C17;
+}
+
+.perfil-salvar {
+    display: flex;
+    justify-content: center;
+    margin-top: 4rem;
+}
+
+.btn-salvar {
+    background-color: #FD7C17;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-salvar:hover {
+    background-color: #e26b10;
+}
+
+
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .perfil-info {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .perfil-imagem {
+        width: 120px;
+        height: 120px;
+    }
+
+    .perfil-contato-arroba {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    .perfil-contato img, .perfil-arroba img {
+        width: 40px;
+        height: 40px;
+    }
+}
+
+
+.historico-denuncias {
+    margin-top: 2rem;
+}
+
+.historico-denuncias h2 {
+    font-size: 1.5rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.historico-itens {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5.5rem;
+}
+
+.historico-item {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    cursor: pointer;
+    width: 120px;
+    height: 120px;
+    transition: border-color 0.3s;
+}
+
+.historico-item:hover {
+    border-color: #FD7C17;
+}
+
+.historico-item span {
+    font-size: 2rem;
+    color: #666;
+}
+
+.historico-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.conteudo-adicionado {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.conteudo-adicionado img,
+.conteudo-adicionado video {
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px;
+}
+
+.conteudo-adicionado a {
+    color: #FD7C17;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+@media (max-width: 768px) {
+    .historico-itens {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .historico-itens {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
+
+
