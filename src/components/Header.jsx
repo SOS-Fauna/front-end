@@ -1,82 +1,61 @@
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import AcessoPerfil from "../pages/AcessoPerfil";
-import logo from '../assets/logo.svg';
-import icon_perfil from '../assets/iconperfil.svg';
-import { FaUserCircle } from "react-icons/fa"; 
+import React, { useState, useEffect } from "react";
+
+import logo from "../assets/logo.svg";
+import iconperfil from "../assets/iconperfil.svg";
 import "../styles/header.css";
 
+import { Link } from "react-router-dom";
+
 export default function Header() {
-  const [modalAberto, setModalAberto] = useState(false);
-  const [usuarioLogado, setUsuarioLogado] = useState(localStorage.getItem("usuarioTipo")); // "ONG", "Denunciante" ou null
-  const [menuAberto, setMenuAberto] = useState(false);
-  const [menuHamburguerAberto, setMenuHamburguerAberto] = useState(false);
+  const [openMenuHamb, setOpenMenuHamb] = useState(false);
+  const resetMenu = () => {
+    setOpenMenuHamb(false);
+  };
 
   useEffect(() => {
-    const usuarioTipo = localStorage.getItem("usuarioTipo");
-    setUsuarioLogado(usuarioTipo);
+    window.addEventListener("resize", resetMenu);
+    window.addEventListener("scroll", resetMenu);
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("usuarioTipo"); 
-    setUsuarioLogado(null);
-    setMenuAberto(false);
+  const clickMenu = () => {
+    setOpenMenuHamb(!openMenuHamb);
   };
 
   return (
-    <>
-      <header id="header">
-        <nav className="nav-bar">
-          <Link to="/">
-            <img src={logo} alt="Logo" />
-          </Link>
-
-          <div 
-            className={`menu-hamburguer ${menuHamburguerAberto ? "ativo" : ""}`} 
-            onClick={() => setMenuHamburguerAberto(!menuHamburguerAberto)}
-          >
-            <div></div>
-            <div></div>
-            <div></div>
+    <header id="header">
+      <nav className="nav-bar">
+        <Link to="/" className="linkLogo" onClick={resetMenu}>
+          <img src={logo} alt="Descrição da imagem" />
+        </Link>
+        <div onClick={clickMenu}>
+          <div className="menu-hamb">
+            <div className={openMenuHamb ? "barra1-ative" : "barra1"}></div>
+            <div className={openMenuHamb ? "barra2-ative" : "barra2"}></div>
+            <div className={openMenuHamb ? "barra3-ative" : "barra3"}></div>
           </div>
-
-          {/* Lista de Navegação */}
-          <ul className={`nav-list ${menuHamburguerAberto ? "ativo" : ""}`}>
-            <li className="nav-item"><Link to="/Denuncia" onClick={() => setMenuHamburguerAberto(false)}>Denuncie Aqui</Link></li>
-            <li className="nav-item"><Link to="/Ong" onClick={() => setMenuHamburguerAberto(false)}>Encontre uma Ong</Link></li>
-            <li className="nav-item"><Link to="/QuemSomos" onClick={() => setMenuHamburguerAberto(false)}>Quem Somos</Link></li>
-            <li className="nav-item"><Link to="/Adocao" onClick={() => setMenuHamburguerAberto(false)}>Adoção</Link></li>
-            <li className="nav-item"><Link to="/Servico-Veterinarios" onClick={() => setMenuHamburguerAberto(false)}>Atendimento Veterinário</Link></li>
+          <ul className={openMenuHamb ? "nav-list on" : "nav-list"}>
+            <li className="nav-item">
+              <Link to="/Denuncie">Denuncie Aqui</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Ong">Encontre uma Ong</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/QuemSomos">Quem Somos</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Adocao">Adoção</Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/Veterinario">Atendimento Veterinário</Link>
+            </li>
           </ul>
+        </div>
 
-          {usuarioLogado ? (
-            <div className="perfil-menu">
-              <FaUserCircle className="perfil-icone" onClick={() => setMenuAberto(!menuAberto)} />
-
-              {menuAberto && (
-                <div className="menu-suspenso">
-                  <Link to={usuarioLogado === "ONG" ? "/perfil-ong" : "/perfil-usuario"} onClick={() => setMenuAberto(false)}>
-                    Perfil
-                  </Link>
-                  {usuarioLogado === "Denunciante" && (
-                    <Link to="/minhas-denuncias" onClick={() => setMenuAberto(false)}>
-                      Minhas Denúncias
-                    </Link>
-                  )}
-                  <button onClick={handleLogout}>Sair</button>
-                </div>
-              )}
-            </div>
-          ) : (
-            <button className="perfil-button" onClick={() => setModalAberto(true)}>
-              <img src={icon_perfil} alt="Ícone de perfil" />
-            </button>
-          )}
-        </nav>
-      </header>
-
-      {/* Modal de Acesso */}
-      {modalAberto && <AcessoPerfil fecharModal={() => setModalAberto(false)} setUsuarioLogado={setUsuarioLogado} />}
-    </>
+        <div className="iconePerfil">
+          <img src={iconperfil} alt="" />
+        </div>
+      </nav>
+    </header>
   );
 }
