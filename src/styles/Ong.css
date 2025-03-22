@@ -1,4 +1,4 @@
-.page-vet {
+.page-ong {
     padding: 20px;
     padding-top: 80px;
     max-width: 1200px;
@@ -38,7 +38,7 @@
     }
   }
   
-  .container-vet {
+  .container-ongs {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
