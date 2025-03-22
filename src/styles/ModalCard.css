@@ -11,7 +11,7 @@
     z-index: 1000;
   }
   
-  .modal-container {
+  .modal-container-card{
     background: white;
     padding: 2rem;
     border-radius: 10px;
@@ -30,12 +30,17 @@
     font-size: 1.5rem;
     cursor: pointer;
   }
-  
+
+ .localizacao-card{
+  text-align: center;
+  margin-top: 1rem;
+ }
+
   .modal-img {
     width: 100%;
-    height: 100%;
+    height: 250px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: 8px;
   }
   
   .modal-icones {
@@ -59,6 +64,15 @@
     height: 30px;
   }
   
+  .modal-ong{
+    text-align: left;
+  }
+  .modal-ong-info{
+    text-align: left;
+    margin-top: 1rem;
+  }
+  
+
   .btn-adotar {
     margin-top: 1rem;
     padding: 10px 20px;

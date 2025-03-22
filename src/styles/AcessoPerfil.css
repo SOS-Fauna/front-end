@@ -1,0 +1,220 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    pointer-events: auto; 
+}
+
+  
+  .modal-container {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 400px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  /* Título */
+  .modal-container h2 {
+    color: #FD7C17;
+    margin-bottom: 20px;
+    font-size: 2.3rem;
+    text-align: center;
+  }
+  
+  /* Botões de ONG e Denunciante */
+  .botoes-acesso {
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Espaço entre os botões */
+  }
+  
+  .botoes-acesso button {
+    flex: 1; 
+    max-width: 150px; 
+    padding: 10px;
+    font-size: 16px;
+    background-color: #FD7C17; 
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .botoes-acesso button:hover {
+    background-color: #e26b10;
+  }
+  .btn-google {
+    background: white;
+    border: 1px solid black;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+  
+  .google-icon {
+    width: 25px; 
+    height: 25px;
+    margin-right: 10px; 
+  }
+  
+  .ou-texto {
+    color: #555;
+    font-weight: bold;
+    margin: 10px 0;
+    text-align: center;
+  }
+  
+  .texto-acesso {
+    color: #555;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .inputs-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid black;
+    border-radius:6px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  /* Botão Entrar */
+  .btn-entrar {
+    background:  #4285F4;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .btn-entrar:hover {
+    background: #316fd3;
+  }
+  
+  /* Links */
+  .links-acesso a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+  }
+  
+  .links-acesso a:hover {
+    text-decoration: underline;
+  }
+  
+  .modal-logo {
+    width: 80px;
+    margin-bottom: 10px;
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0;
+    border: 2px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  .btn-proximo,
+  .btn-finalizar {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+  }
+  
+  .btn-proximo:hover,
+  .btn-finalizar:hover {
+    background: #333;
+  }
+  .acesso-email-texto {
+    color: #555; 
+    font-size: 18px;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+
+.links-acesso a {
+    color: black; 
+    text-decoration: none;
+    font-size: 14px;
+    display: block;
+    margin-top: 10px;
+    text-align: center;
+  }
+  
+  .links-acesso a:hover {
+    text-decoration: underline;
+  }
+  
+  .confirmar-email {
+    font-size: 1.2rem;
+  }
+
+ .btn-registrar{
+    background:  #4285F4;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    border-radius: 5px;
+    margin-top: 10px;
+ }
+
+ .btn-registrar:hover{
+    background: #3374dd;
+ }
+
+ .error-text {
+  color: red;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.btn-voltar {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn-voltar:hover {
+  color: #555;
+}
