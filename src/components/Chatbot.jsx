@@ -6,7 +6,7 @@ import dogchat from "../assets/dogchat.png"
 
 function Chatbot() {
     return (
-        <div>
+        <div className='pai'>
             <div className='telaBase'>
                 <div className='icons'>
                     <GoArrowLeft size={32} color="black" />

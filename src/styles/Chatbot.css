@@ -1,4 +1,8 @@
 
+.pai {
+    margin-top: 10vh;
+}
+ 
  .telaBase {
     width: 90%;
     max-width: 20rem; /* Ajuste conforme necessário */
