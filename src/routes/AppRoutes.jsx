@@ -8,6 +8,7 @@ import PerfilUsuario from "../pages/area_restrita/Perfil_Usuario";
 import MinhasDenuncias from "../pages/area_restrita/MinhasDenuncias";
 import ServicosVeterinarios from "../pages/ServicosVeterinarios";
 import PerfilOng from "../pages/area_restrita/Perfil_Ong";
+import DetalhesDenuncia from "../pages/area_restrita/Detalhes_MinhasDenuncias";
 
 function AppRoutes() {
   return (
@@ -21,6 +22,7 @@ function AppRoutes() {
       <Route path ="/perfil-usuario" element={<PerfilUsuario/>}/>
       <Route path = "/perfil-ong" element={<PerfilOng/>}/>
       <Route path="/minhas-denuncias" element={<MinhasDenuncias/>}/>
+      <Route path="/detalhesDenuncias" element={<DetalhesDenuncia/>}/>
     </Routes>
   );
 }
