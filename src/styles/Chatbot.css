@@ -5,8 +5,8 @@
  
  .telaBase {
     width: 90%;
-    max-width: 20rem; /* Ajuste conforme necessário */
-    min-height: 30rem;
+    max-width: 28rem;
+    min-height: 32rem;
     background-color: #d9d9d9;
     border-radius: 30px;
     margin: 5vh auto;
@@ -14,8 +14,7 @@
 }
 
 .mensagensRecebidas {
-    width: 90%;
-    max-width: 90%;
+    width: 100%;
     min-height: 45vh;
     overflow-y: auto; /* Adicione scroll se necessário */
 }
@@ -24,8 +23,8 @@
     display: flex;
     justify-content: center;
     height: 12vh;
-    max-height: 12vh;
-    margin-top: -6vh;
+    max-height: 10vh;
+    margin-top: -5vh;
 }
 
 .icons {
@@ -38,14 +37,14 @@
     min-height: 5rem;
 }
 
-.caixaTexto {
+/* .caixaTexto {
     display: flex;
     position: absolute;
     bottom: 2; /* Posiciona na parte inferior */
-    width: 100%;
+    /*width: 100%;
     max-width: 100%;
     padding: 0.5rem;
-}
+} */
 
 .input {
     width: 85%;
@@ -64,4 +63,47 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.chat-container{
+    margin-left: 0.8rem;
+    margin-right: 0.8rem;
+}
+
+.txtChat {
+    display: flex;
+}
+
+.mensagemBot {
+    background-color: #FD7C17;
+    padding: 0.3rem;
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+    margin-right: auto;
+    text-align: left;
+    font-size: 0.9rem;
+}
+
+.mensagemUser {
+    background-color: #4691F2;
+    padding: 0.3rem;
+    border-radius: 10px;
+    margin-bottom: 0.3rem;
+    margin-left: auto;
+    font-size: 0.9rem;
+}
+
+.action-button{
+    color: white;
+    background-color: #4691F2;
+    border-radius: 20%;
+    border: none;
+    font-size: 1rem;
+    padding: 0.60rem;
+    margin-left: 0.3rem;
+    
+}
+
+.button-container {
+    display: flex;
 }
