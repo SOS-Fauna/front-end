@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import '../../styles/Chatbot.css'
 import BotoesChat from '../botoesChat';
+import { LuSend } from 'react-icons/lu';
 
 export function ChatbotBase() {
   const [etapa, setEtapa] = useState(0);
@@ -80,32 +81,13 @@ export function ChatbotBase() {
       }
       setMensagens([...mensagens, `Você: ${rua}`, "Bot: Muito bem, processo finalizado."]);
       setFinalizado(true);
+      
       // aguardando API para gerar o número de protocolo
     }
   };
 
-  const voltarEtapa = () => {
-    if (etapa > 0) {
-      setEtapa(etapa - 1);
-      setMensagens(mensagens.slice(0, -1));
-    }
-  };
-
-
-  const fecharChat = () => {
-    setVisivel(false);
-  };
-
-  //Atenção:Não renderiza o componente
-  if (!visivel) {
-    return null;
-  }
-
   return (
     <div className="chat-container">
-      {/* <div className="chat-header">
-        <button className="close-button" onClick={fecharChat}>X</button>
-      </div> */}
 
       <div className="mensagem-container">
         {mensagens.map((mensagem, indice) => (
@@ -117,18 +99,19 @@ export function ChatbotBase() {
         ))}
       </div>
 
-      {finalizado && <p className="finalizado-message">Processo finalizado</p>}
-
       {!finalizado && (
         <>
-          {etapa === 0 && <button className="botaoIniciar" onClick={avancarEtapa}>Iniciar</button>}
+          {etapa === 0 &&
+            <div className='botaoIniciarPai'>
+              <button
+                className="botaoIniciar" onClick={avancarEtapa}>Iniciar</button>
+            </div>}
 
           {etapa === 1 && (
             <>
               <BotoesChat type={"text"}
                 placeholder={"Informe seu nome"}
                 setValor={setNome}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>
@@ -139,7 +122,6 @@ export function ChatbotBase() {
               <BotoesChat type={"email"}
                 placeholder={"Informe seu email"}
                 setValor={setEmail}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>
@@ -150,7 +132,6 @@ export function ChatbotBase() {
               <BotoesChat type={"password"}
                 placeholder={"Informe uma senha"}
                 setValor={setSenha}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>
@@ -161,7 +142,6 @@ export function ChatbotBase() {
               <BotoesChat type={"text"}
                 placeholder={"Informe o animal envolvido"}
                 setValor={setAnimal}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>
@@ -172,28 +152,29 @@ export function ChatbotBase() {
               <BotoesChat type={"text"}
                 placeholder={"Informe o nome do agressor (se houver)"}
                 setValor={setAgressor}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
+                campoObrigatorio={false}
               />
             </>
           )}
 
           {etapa === 6 && (
-
-            <div className="input-container">
-              <textarea
-                rows={4} cols={42}
-                className="input-field"
-                maxLength={255}
-                placeholder="Descreva o ocorrido"
-                value={descricao}
-                onChange={(e) => setDescricao(e.target.value)}
-              />
-              <div className="button-container">
-                <button className="action-button" onClick={voltarEtapa}>Voltar</button>
-                <button className="action-button" onClick={avancarEtapa}>Enviar</button>
+            <form action="#" onSubmit={avancarEtapa}>
+              <div className="input-container">
+                <textarea
+                  rows={4} cols={58}
+                  className="input-field"
+                  maxLength={255}
+                  placeholder="Descreva o ocorrido"
+                  value={descricao}
+                  onChange={(e) => setDescricao(e.target.value)}
+                  required
+                />
+                <div className="button-container">
+                  <button className="action-button" type='submit'><LuSend size={20} color='white' /></button>
+                </div>
               </div>
-            </div>
+            </form>
           )}
 
           {etapa === 7 && (
@@ -201,7 +182,6 @@ export function ChatbotBase() {
               <BotoesChat type={"text"}
                 placeholder={"Informe o bairro"}
                 setValor={setBairro}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>
@@ -212,7 +192,6 @@ export function ChatbotBase() {
               <BotoesChat type={"text"}
                 placeholder={"Informe o nome da rua"}
                 setValor={setRua}
-                voltarEtapa={voltarEtapa}
                 avancarEtapa={avancarEtapa}
               />
             </>

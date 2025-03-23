@@ -10,14 +10,14 @@ function Chatbot() {
     return (
         <>
         {show &&
-        <div className='pai'>
+        <div className='telaBasePai'>
             <div className='telaBase'>
                 <div className='icons'>
                     <IoRefresh size={30} color="black" />
                     <VscChromeClose size={30} color="black" onClick={() => (setShow(false))}/>
                 </div>
-                <div className='imgcao'>
-                    <img src={dogchat} alt="cão tela chat" />
+                <div className='imgCao'>
+                    <img className='ftCao' src={dogchat} alt="cão tela chat" />
                 </div>
 
                 <div className='mensagensRecebidas'>

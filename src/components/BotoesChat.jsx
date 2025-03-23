@@ -1,19 +1,22 @@
 import { LuSend } from "react-icons/lu";
 
-function BotoesChat({ type, placeholder, setValor, voltarEtapa, avancarEtapa }) {
+function BotoesChat({ type, placeholder, setValor, avancarEtapa, campoObrigatorio=true }) {
     return (
-        <div className="input-container">
-            <div className="button-container">
-                <input
-                    className="input-field"
-                    type={type}
-                    placeholder={placeholder}
-                    onChange={(e) => setValor(e.target.value)}
-                />
+        <form action="#" onSubmit={avancarEtapa}>
+            <div className="input-container">
+                <div className="button-container">
+                    <input
+                        className="input-field"
+                        type={type}
+                        placeholder={placeholder}
+                        onChange={(e) => setValor(e.target.value)}
+                        required={campoObrigatorio}
+                    />
 
-                <button className="action-button" onClick={avancarEtapa}><LuSend size={20} color="white" /></button>
+                    <button className="action-button" type="submit"><LuSend size={20} color="white" /></button>
+                </div>
             </div>
-        </div>
+        </form>
     )
 }
 export default BotoesChat
