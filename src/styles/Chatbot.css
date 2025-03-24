@@ -1,7 +1,6 @@
 
 .telaBasePai {
-    margin-top: 10vh;
-    
+    margin-top: 16vh;
 }
  
  .telaBase {
@@ -19,7 +18,6 @@
 .mensagensRecebidas {
     width: 100%;
     min-height: 45vh;
-
     flex: 1;
     overflow-y: auto;
     padding: 10px;

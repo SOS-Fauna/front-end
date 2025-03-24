@@ -162,7 +162,7 @@ export function ChatbotBase() {
             <form action="#" onSubmit={avancarEtapa}>
               <div className="input-container">
                 <textarea
-                  rows={4} cols={58}
+                  rows={4} cols={50}
                   className="input-field"
                   maxLength={255}
                   placeholder="Descreva o ocorrido"

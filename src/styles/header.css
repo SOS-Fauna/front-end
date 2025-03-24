@@ -184,3 +184,11 @@
     display: none;
   }
 }
+
+/* ajustes do chat para sobrepor as páginas */
+.chatMenu{
+  position: fixed;
+  z-index: 100;
+  left: 50%;
+  transform: translate(-50%);
+}

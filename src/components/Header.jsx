@@ -5,12 +5,14 @@ import logo from "../assets/logo.svg";
 import icon_perfil from "../assets/iconperfil.svg";
 import { FaUserCircle } from "react-icons/fa";
 import "../styles/header.css";
+import Chatbot from "./Chatbot";
 
 export default function Header() {
   const [modalAberto, setModalAberto] = useState(false);
   const [usuarioLogado, setUsuarioLogado] = useState(localStorage.getItem("usuarioTipo"));
   const [menuAberto, setMenuAberto] = useState(false);
   const [openMenuHamb, setOpenMenuHamb] = useState(false);
+  const [chatbotAberto, setChatbotAberto] = useState(false);
 
   useEffect(() => {
     const usuarioTipo = localStorage.getItem("usuarioTipo");
@@ -51,21 +53,21 @@ export default function Header() {
           </div>
 
           {/* Lista de Navegação */}
-          <ul className={openMenuHamb ? "nav-list on" : "nav-list"}>
+          <ul className={openMenuHamb ? "nav-list on" : "nav-list"} onClick={resetMenu}>
             <li className="nav-item">
-              <Link to="/Denuncie" onClick={resetMenu}>Denuncie Aqui</Link>
+              <Link onClick={() => setChatbotAberto(!chatbotAberto)}>Denuncie Aqui</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Ong" onClick={resetMenu}>Encontre uma Ong</Link>
+              <Link to="/Ong" >Encontre uma Ong</Link>
             </li>
             <li className="nav-item">
-              <Link to="/QuemSomos" onClick={resetMenu}>Quem Somos</Link>
+              <Link to="/QuemSomos" >Quem Somos</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Adocao" onClick={resetMenu}>Adoção</Link>
+              <Link to="/Adocao" >Adoção</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Servico-Veterinarios" onClick={resetMenu}>Atendimento Veterinário</Link>
+              <Link to="/Servico-Veterinarios" >Atendimento Veterinário</Link>
             </li>
           </ul>
 
@@ -97,6 +99,12 @@ export default function Header() {
 
       {/* Modal de Acesso */}
       {modalAberto && <AcessoPerfil fecharModal={() => setModalAberto(false)} setUsuarioLogado={setUsuarioLogado} />}
+
+       {chatbotAberto &&
+        <div className="chatMenu">
+          <Chatbot />
+        </div>
+      }
     </>
   );
 }
