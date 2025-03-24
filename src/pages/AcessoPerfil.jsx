@@ -65,8 +65,10 @@ const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
   const handleCadastroFinalizado = (tipoUsuario) => {
     localStorage.setItem("usuarioTipo", tipoUsuario);
     setUsuarioLogado(tipoUsuario);
-    fecharModal();
+    dispatch({ type: "ABRIR_CONFIRMACAO" }); // Garante que a confirmação será aberta antes de fechar o modal
   };
+  
+  
 
   return (
     <div className="modal-overlay">

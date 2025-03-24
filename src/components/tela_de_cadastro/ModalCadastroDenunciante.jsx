@@ -16,7 +16,6 @@ const ModalCadastroDenunciante = ({ fecharModal, abrirConfirmacao, onCadastroFin
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
 
-    // Remove o erro ao preencher o campo
     setErrors({ ...errors, [e.target.name]: "" });
   };
 
@@ -40,9 +39,11 @@ const ModalCadastroDenunciante = ({ fecharModal, abrirConfirmacao, onCadastroFin
   const finalizarCadastro = () => {
     if (validarCampos()) {
       abrirConfirmacao();
-      onCadastroFinalizado("Denunciante"); // Atualiza o estado para usuário logado
+      onCadastroFinalizado("Denunciante"); 
     }
   };
+
+  
 
   return (
     <div className="modal-overlay">

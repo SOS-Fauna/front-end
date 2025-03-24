@@ -33,6 +33,8 @@ const ModalConfirmacao = ({ fecharModal, tipoUsuario }) => {
     }, );
   };
 
+  
+
   return (
     <div className="modal-overlay" onClick={fecharModal}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
