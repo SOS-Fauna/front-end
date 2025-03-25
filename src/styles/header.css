@@ -187,8 +187,11 @@
 
 /* ajustes do chat para sobrepor as páginas */
 .chatMenu{
+  width: 100vw;
   position: fixed;
   z-index: 100;
   left: 50%;
   transform: translate(-50%);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
 }

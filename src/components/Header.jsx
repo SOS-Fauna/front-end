@@ -55,7 +55,7 @@ export default function Header() {
           {/* Lista de Navegação */}
           <ul className={openMenuHamb ? "nav-list on" : "nav-list"} onClick={resetMenu}>
             <li className="nav-item">
-              <Link onClick={() => setChatbotAberto(!chatbotAberto)}>Denuncie Aqui</Link>
+              <Link onClick={() => setChatbotAberto(true)}>Denuncie Aqui</Link>
             </li>
             <li className="nav-item">
               <Link to="/Ong" >Encontre uma Ong</Link>
@@ -102,7 +102,7 @@ export default function Header() {
 
        {chatbotAberto &&
         <div className="chatMenu">
-          <Chatbot />
+          <Chatbot abrirChatbot={setChatbotAberto}/>
         </div>
       }
     </>

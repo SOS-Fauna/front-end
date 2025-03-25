@@ -1,6 +1,7 @@
 
 .telaBasePai {
     margin-top: 16vh;
+    animation: slideInTop 0.5s ease-out forwards;
 }
  
  .telaBase {
@@ -124,3 +125,15 @@
     line-height: 30px;
     padding: 0 35px;
 }
+
+/* Entrada do chatbot*/
+@keyframes slideInTop {
+    from {
+      transform: translateY(-10%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(-20);
+      opacity: 1;
+    }
+  }
