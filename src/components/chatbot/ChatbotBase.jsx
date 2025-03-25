@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/Chatbot.css'
-import BotoesChat from '../botoesChat';
+import BotoesChat from '../BotoesChat';
 import { LuSend } from 'react-icons/lu';
 
 export function ChatbotBase() {

@@ -23,7 +23,6 @@
   padding: 10px;
 }
 
-/* Ajuste do layout flexível */
 .container-animais {
   display: flex;
   flex-wrap: wrap;
@@ -41,8 +40,8 @@
 }
 
 .descricao-container h1 {
-  font-size: 2.5rem;
-  color: #333;
+  font-size: clamp(28px, 3.5vw, 35px);
+  color: #fd7c17;
   margin-bottom: 10px;
 }
 
