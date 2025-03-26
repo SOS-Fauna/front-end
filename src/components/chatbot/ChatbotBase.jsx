@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../../styles/Chatbot.css'
-import BotoesChat from '../BotoesChat';
+import ChatbotInput from '../ChatbotInput';
 import { LuSend } from 'react-icons/lu';
 
 export function ChatbotBase() {
@@ -17,9 +17,6 @@ export function ChatbotBase() {
   const [mensagens, setMensagens] = useState([
     "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar sua denúncia de forma rápida. Clique para iniciar."
   ]);
-
-  const [visivel, setVisivel] = useState(true);
-
 
   const avancarEtapa = () => {
     if (etapa === 0) {
@@ -109,7 +106,7 @@ export function ChatbotBase() {
 
           {etapa === 1 && (
             <>
-              <BotoesChat type={"text"}
+              <ChatbotInput type={"text"}
                 placeholder={"Informe seu nome"}
                 setValor={setNome}
                 avancarEtapa={avancarEtapa}
@@ -119,7 +116,7 @@ export function ChatbotBase() {
 
           {etapa === 2 && (
             <>
-              <BotoesChat type={"email"}
+              <ChatbotInput type={"email"}
                 placeholder={"Informe seu email"}
                 setValor={setEmail}
                 avancarEtapa={avancarEtapa}
@@ -129,7 +126,7 @@ export function ChatbotBase() {
 
           {etapa === 3 && (
             <>
-              <BotoesChat type={"password"}
+              <ChatbotInput type={"password"}
                 placeholder={"Informe uma senha"}
                 setValor={setSenha}
                 avancarEtapa={avancarEtapa}
@@ -139,7 +136,7 @@ export function ChatbotBase() {
 
           {etapa === 4 && (
             <>
-              <BotoesChat type={"text"}
+              <ChatbotInput type={"text"}
                 placeholder={"Informe o animal envolvido"}
                 setValor={setAnimal}
                 avancarEtapa={avancarEtapa}
@@ -149,7 +146,7 @@ export function ChatbotBase() {
 
           {etapa === 5 && (
             <>
-              <BotoesChat type={"text"}
+              <ChatbotInput type={"text"}
                 placeholder={"Informe o nome do agressor (se houver)"}
                 setValor={setAgressor}
                 avancarEtapa={avancarEtapa}
@@ -179,7 +176,7 @@ export function ChatbotBase() {
 
           {etapa === 7 && (
             <>
-              <BotoesChat type={"text"}
+              <ChatbotInput type={"text"}
                 placeholder={"Informe o bairro"}
                 setValor={setBairro}
                 avancarEtapa={avancarEtapa}
@@ -189,7 +186,7 @@ export function ChatbotBase() {
 
           {etapa === 8 && (
             <>
-              <BotoesChat type={"text"}
+              <ChatbotInput type={"text"}
                 placeholder={"Informe o nome da rua"}
                 setValor={setRua}
                 avancarEtapa={avancarEtapa}
