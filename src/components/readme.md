@@ -1,1 +1,0 @@
-## Aqui ficarão todos os componentes utilizados de uma forma global pela aplicação, componentes utilizados somente por uma página em específico ficará em outro lugar.
