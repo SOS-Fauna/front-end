@@ -9,6 +9,7 @@
     flex-direction: column;
     align-items: center;
     gap: 10px;
+    position: relative;
 }
 
 .animal-img {
@@ -29,11 +30,7 @@
     font-weight: bold;
 }
 
-.favorito {
-    cursor: pointer;
-    font-size: 20px;
-    color: #ffcc00;
-}
+
 
 .animal-localizacao {
     color: #777;
@@ -59,7 +56,7 @@
 }
 
 
-.btn-adotar {
+.btn-criar {
     background: #4285F4;
     color: white;
     padding: 8px 16px;
@@ -69,9 +66,29 @@
     width: 100%;
 }
 
-.btn-adotar:hover {
-    background: #e65c00;
+.btn-criar:hover {
+    background: #245ebb;
 }
+
+/* Adicione isso no seu AnimalCard.css */
+
+  
+  .delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #ff0000;
+    cursor: pointer;
+    font-size: 1.2rem;
+    z-index: 1;
+  }
+  
+  .delete-button:hover {
+    color: #cc0000;
+  }
+  
 
 input {
     border: 1px solid #ccc;
