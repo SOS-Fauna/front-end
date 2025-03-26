@@ -35,7 +35,7 @@
   background: #ff8c00;
   font-family: 'Poppins', sans-serif;
   color: white;
-  min-width: 200px;
+  min-width: 15vw;
   padding: 15px 35px;
   border-radius: 50px;
   text-decoration: none;
@@ -83,4 +83,5 @@
 .estilo-paragrafo {
   font-family: 'Poppins-Black', sans-serif;
   font-size: 1.2rem;
+  
 }

@@ -21,7 +21,6 @@ A **Plataforma S.O.S Fauna** foi criada para oferecer uma solução eficiente, s
 
 ## ⚙️ Funcionalidades
 
-- **Denúncia Anônima:** Permite que os usuários façam denúncias sem a necessidade de revelar sua identidade, garantindo sigilo e proteção.
 - **Acompanhamento de Casos:** Acompanhe o progresso da sua denúncia diretamente na plataforma.
 - **Recursos de Apoio:** Fornecemos informações sobre como identificar maus-tratos e como agir para ajudar os animais.
   
@@ -55,7 +54,7 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 
 1. Clone o repositório:
    ```bash
-   git clone https://github.com/DanielleFS/S.O.S-Fauna-Front
+   git clone https://github.com/Helelys/S.O.S-Fauna
 
 
 ## 🌟 Colaboradores
@@ -67,9 +66,6 @@ A segurança e a privacidade dos nossos usuários são nossa prioridade. As den�
 
 #### Isabelly Remígio  
 [🔗 Linkedin](https://www.linkedin.com/in/isabelly-remigio/) | [🐙 Github](https://github.com/isabelly-remigio)
-
-#### Wladson Thiago  
-[🔗 Linkedin](https://www.linkedin.com/in/wladson-thiago-oliveira-5a78621a1/) | [🐙 Github](https://github.com/wladsonT)
 
 
 ### 💻 Backend

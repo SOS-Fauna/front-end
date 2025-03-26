@@ -1,9 +1,10 @@
 import "../styles/Footer.css";
+import logo from "../assets/logo.svg";
 
 function Footer() {
     return (
         <div className="footer">
-            <p><strong>Contato:</strong> sosfaunape@sosfauna.com</p>
+            <img src={logo} alt="" />
         </div>
     )
 }

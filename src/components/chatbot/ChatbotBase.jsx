@@ -19,66 +19,56 @@ export function ChatbotBase() {
   ]);
 
   const avancarEtapa = () => {
-    if (etapa === 0) {
-      setMensagens([...mensagens, "Bot: Muito bem! Agora me diga seu nome:"]);
-      setEtapa(1);
-    } else if (etapa === 1) {
-      setMensagens([...mensagens, `Você: ${nome}`, "Bot: Muito bem! Agora me diga seu email:"]);
-      setEtapa(2);
-    } else if (etapa === 2) {
-      if (email.trim() === "") {
-        setMensagens([...mensagens, "Bot: O email não pode estar vazio. Digite seu email:"]);
-        return;
-      }
-      setMensagens([...mensagens, `Você: ${email}`, "Bot: Muito bem! Agora crie uma senha:"]);
-      setEtapa(3);
-    } else if (etapa === 3) {
-      if (senha.trim() === "") {
-        setMensagens([...mensagens, "Bot: A senha não pode estar vazia. Digite a senha:"]);
-        return;
-      }
-      if (senha.length < 6) {
-        setMensagens([...mensagens, "Bot: A senha deve ter no mínimo 6 caracteres. Tente novamente."]);
-        return;
-      }
-      setMensagens([...mensagens, `Senha: ${"*".repeat(senha.length)}`, "Bot: Agora, diga que tipo de animal está em condições de maus tratos?"]);
-      setEtapa(4);
-    } else if (etapa === 4) {
-      if (animal.trim() === "") {
-        setMensagens([...mensagens, "Bot: O campo 'animal' é obrigatório. Tente novamente."]);
-        return;
-      }
-      setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver)."]);
-      setEtapa(5);
-    } else if (etapa === 5) {
-      setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Agora, descreva o ocorrido (máximo de 255 caracteres)."]);
-      setEtapa(6);
-    } else if (etapa === 6) {
-      if (descricao.trim() === "") {
-        setMensagens([...mensagens, "Bot: A descrição é obrigatória. Tente novamente."]);
-        return;
-      }
-      if (descricao.length > 255) {
-        setMensagens([...mensagens, "Bot: A descrição não pode ultrapassar 255 caracteres. Tente novamente."]);
-        return;
-      }
-      setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente."]);
-      setEtapa(7);
-    } else if (etapa === 7) {
-      if (bairro.trim() === "") {
-        setMensagens([...mensagens, "Bot: O bairro é obrigatório. Tente novamente."]);
-        return;
-      }
-      setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente."]);
-      setEtapa(8);
-    } else if (etapa === 8) {
-      if (rua.trim() === "") {
-        setMensagens([...mensagens, "Bot: A rua é obrigatória. Tente novamente."]);
-        return;
-      }
-      setMensagens([...mensagens, `Você: ${rua}`, "Bot: Muito bem, processo finalizado."]);
-      setFinalizado(true);
-      
+    switch (etapa) {
+      case 0:
+        setMensagens([...mensagens, "Bot: Muito bem! Agora me diga seu nome:"]);
+        setEtapa(1);
+        break;
+
+      case 1:
+        setMensagens([...mensagens, `Você: ${nome}`, "Bot: Muito bem! Agora me diga seu email:"]);
+        setEtapa(2);
+        break;
+
+      case 2:
+        setMensagens([...mensagens, `Você: ${email}`, "Bot: Muito bem! Agora crie uma senha:"]);
+        setEtapa(3);
+        break;
+
+      case 3:
+        setMensagens([...mensagens, `Senha: ${"*".repeat(senha.length)}`, "Bot: Agora, diga que tipo de animal está em condições de maus tratos?"]);
+        setEtapa(4);
+        break;
+
+      case 4:
+        setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver)."]);
+        setEtapa(5);
+        break;
+
+      case 5:
+        setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Agora, descreva o ocorrido (máximo de 255 caracteres)."]);
+        setEtapa(6);
+        break;
+
+      case 6:
+        setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente."]);
+        setEtapa(7);
+        break;
+
+      case 7:
+        setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente."]);
+        setEtapa(8);
+        break;
+
+      case 8:
+        setMensagens([...mensagens, `Você: ${rua}`, "Bot: Muito bem, processo finalizado."]);
+        setFinalizado(true);
+        break;
+
+      default:
+        setMensagens([...mensagens, "Bot: Erro! Por favor tente novamente mais tarde."]);
+        break;
+
       // aguardando API para gerar o número de protocolo
     }
   };
@@ -130,6 +120,7 @@ export function ChatbotBase() {
                 placeholder={"Informe uma senha"}
                 setValor={setSenha}
                 avancarEtapa={avancarEtapa}
+                tamanhoMin={6}
               />
             </>
           )}
@@ -161,6 +152,7 @@ export function ChatbotBase() {
                 <textarea
                   rows={4} cols={50}
                   className="input-field"
+                  minLength={20}
                   maxLength={255}
                   placeholder="Descreva o ocorrido"
                   value={descricao}

@@ -1,9 +1,8 @@
 .slider {
   width: 100vw;
   height: calc(100vh - 10vh);
-  /* Ajuste da altura para ocupar o resto da tela (Deve sofrer alterações)*/
-  min-height: 500px;
-  max-height: 601px;
+  min-height: 63vh;
+  max-height: 90vh;
   overflow: hidden;
   position: relative;
   display: flex;

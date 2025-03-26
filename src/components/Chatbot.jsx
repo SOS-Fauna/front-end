@@ -1,8 +1,8 @@
 import '../styles/Chatbot.css';
 import { VscChromeClose } from "react-icons/vsc";
 import { IoRefresh } from "react-icons/io5";
-import dogchat from "../assets/dogchat.png"
-import { ChatbotBase } from "./chatbot/ChatbotBase"
+import dogchat from "../assets/dogchat.png";
+import { ChatbotBase } from "./chatbot/ChatbotBase";
 
 function Chatbot({abrirChatbot}) {
 
