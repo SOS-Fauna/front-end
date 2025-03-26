@@ -6,9 +6,9 @@ const MinhasDenuncias = () => {
   const navigate = useNavigate();
 
   const denuncias = [
-    { data: "12/03/2025", assunto: "Abandono", protocolo: "123456" },
-    { data: "05/02/2025", assunto: "Maus Tratos", protocolo: "789012" },
-    { data: "08/01/2025", assunto: "Outro", protocolo: "345678" },
+    { data: "12/03/2025", assunto: "Abandono", protocolo: "PROT-2025-001" },
+    { data: "05/02/2025", assunto: "Maus Tratos", protocolo: "PROT-2025-002" },
+    { data: "08/01/2025", assunto: "Outro", protocolo: "PROT-2025-003" },
   ];
 
   return (

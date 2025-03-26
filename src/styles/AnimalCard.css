@@ -70,10 +70,8 @@
     background: #245ebb;
 }
 
-/* Adicione isso no seu AnimalCard.css */
-
   
-  .delete-button {
+.delete-button {
     position: absolute;
     top: 10px;
     right: 10px;
@@ -85,7 +83,7 @@
     z-index: 1;
   }
   
-  .delete-button:hover {
+.delete-button:hover {
     color: #cc0000;
   }
   

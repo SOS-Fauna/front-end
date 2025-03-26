@@ -14,7 +14,6 @@
   align-items: flex-start;
 }
 
-/* Grid dos cards - Padrão */
 .cards-container {
   flex: 1;
   display: grid;
@@ -51,7 +50,6 @@
   margin: 0;
 }
 
-/* Responsividade para telas médias (até 1200px) */
 @media (max-width: 1200px) {
   .descricao-container {
     padding: 20px 15px;
@@ -70,7 +68,6 @@
   }
 }
 
-/* Responsividade para tablets (até 768px) */
 @media (max-width: 768px) {
   .conteudo-principal {
     flex-direction: column;

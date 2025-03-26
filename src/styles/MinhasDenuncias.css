@@ -53,7 +53,6 @@
     transition: 0.3s;
   }
   
-  /* Botão "Ver Detalhes" */
   .denuncias-table button {
     background-color: #4285F4;
     color: white;
@@ -93,7 +92,6 @@
     }
   }
   
-  /* Adaptação para telas muito pequenas */
   @media (max-width: 480px) {
     .p-4 {
         padding: 10px;

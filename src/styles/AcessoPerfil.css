@@ -23,7 +23,6 @@
   }
   
   
-  /* Título */
   .modal-container h2 {
     color: #FD7C17;
     margin-bottom: 20px;
@@ -31,11 +30,10 @@
     text-align: center;
   }
   
-  /* Botões de ONG e Denunciante */
   .botoes-acesso {
     display: flex;
     justify-content: center;
-    gap: 10px; /* Espaço entre os botões */
+    gap: 10px; 
   }
   
   .botoes-acesso button {
@@ -96,7 +94,6 @@
     cursor: pointer;
   }
   
-  /* Botão Entrar */
   .btn-entrar {
     background:  #4285F4;
     color: white;
@@ -113,7 +110,6 @@
     background: #316fd3;
   }
   
-  /* Links */
   .links-acesso a {
     color: white;
     text-decoration: none;
