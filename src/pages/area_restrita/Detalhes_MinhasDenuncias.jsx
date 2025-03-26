@@ -4,7 +4,7 @@ import animal2 from '../../assets/animal2.svg'
 import { FaHome, FaSearch, FaHeartbeat, FaUsers, FaCheckCircle } from "react-icons/fa";
 
 const DetalhesDenuncia = () => {
-  const [statusAtual, setStatusAtual] = useState(2); // Define qual etapa está preenchida (0 a 4)
+  const [statusAtual, setStatusAtual] = useState(2); 
 
   const etapas = [
     { id: 0, titulo: "Acolhimento", descricao: "O animal foi resgatado e está seguro.", icon: <FaHome /> },

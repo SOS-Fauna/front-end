@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { FaTimes } from "react-icons/fa"; // Importando o ícone X
+import { FaTimes } from "react-icons/fa"; 
 import "../../styles/AnimalCard.css"
 import Sexo from "../../assets/Sexo.svg";
 import check from "../../assets/check.svg";
@@ -33,7 +33,6 @@ const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, a
 
   return (
     <div className="animal-card">
-      {/* Botão de deletar no canto superior direito */}
       <button className="delete-button" onClick={handleDelete}>
         <FaTimes />
       </button>

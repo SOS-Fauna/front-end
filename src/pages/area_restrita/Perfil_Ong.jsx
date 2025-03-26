@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { FaPlus, FaEdit } from "react-icons/fa";
 import "../../styles/Perfil_Ong.css";
 import localizacao from "../../assets/localizacao.svg";
 import contato from "../../assets/contato.svg";
 import redessociais from "../../assets/redessociais.svg";
-import Filtro from "../../components/Filtro";
-import { FaPlus, FaEdit, FaCheck } from "react-icons/fa";
 import AnimalCard from "../../components/card_perfil_ong/AnimalCard";
+import ModalAtualizacaoDenuncia from "../../components/card_perfil_ong/ModalAtualizaçãoDenuncia";
 
 const PerfilOng = () => {
   const [nome, setNome] = useState("Nome da ONG");
@@ -15,17 +15,31 @@ const PerfilOng = () => {
   const [dados, setDados] = useState(["", "", ""]);
   const [animais, setAnimais] = useState([
   ]);
-  const [arquivos, setArquivos] = useState(Array(6).fill(null));
   const [editando, setEditando] = useState(null);
-
-  const handleFileChange = (index, e) => {
-    const file = e.target.files[0];
-    if (file) {
-      const novosArquivos = [...arquivos];
-      novosArquivos[index] = file;
-      setArquivos(novosArquivos);
+  const [denuncias, setDenuncias] = useState([
+    {
+      id: 1,
+      data: "15/05/2023", assunto: "Animal abandonado", protocolo: "PROT-2023-001",
+      descricao: "Cachorro abandonado na rua assis", status: "Pendente", arquivos: []
+    },
+    {
+      id: 2,
+      data: "10/05/2023", assunto: "Maus tratos", protocolo: "PROT-2023-002", descricao: "Cavalo sendo maltratado na fazenda111",
+      status: "Em andamento", arquivos: []
     }
+
+
+  ]);
+
+  const [denunciaSelecionada, setDenunciaSelecionada] = useState(null);
+  const [mostrarModal, setMostrarModal] = useState(false);
+
+  const handleSaveDenuncia = (denunciaAtualizada) => {
+    setDenuncias((prevDenuncias) =>
+      prevDenuncias.map((d) => (d.id === denunciaAtualizada.id ? denunciaAtualizada : d))
+    );
   };
+
 
   const handleSalvar = () => {
     alert("Dados salvos e publicados no ambiente público!");
@@ -33,16 +47,21 @@ const PerfilOng = () => {
   const handleDeleteAnimal = (id) => {
     setAnimais(animais.filter(animal => animal.id !== id));
   };
+  const [paginaAtual, setPaginaAtual] = useState(1);
+  const itensPorPagina = 3;
+  const indiceInicial = (paginaAtual - 1) * itensPorPagina;
+  const indiceFinal = indiceInicial + itensPorPagina;
+  const denunciasPaginadas = [...denuncias].slice(indiceInicial, indiceFinal);
+  const totalPaginas = Math.ceil(denuncias.length / itensPorPagina);
+
+
   return (
     <div className="perfil-container">
-      {/* Seção Sobre */}
       <section className="sobre">
         <div className="sobre-text">
           {editando === "nome" ? (
             <input
-              type="text"
-              value={nome}
-              onChange={(e) => setNome(e.target.value)}
+              type="text" value={nome} onChange={(e) => setNome(e.target.value)}
               onBlur={() => setEditando(null)}
               autoFocus
             />
@@ -64,7 +83,6 @@ const PerfilOng = () => {
               {descricao} <FaEdit className="edit-icon" />
             </p>
           )}
-
           <div className="sobre-imagem">
             <label className="imagem-label">
               {imagem ? (
@@ -118,128 +136,145 @@ const PerfilOng = () => {
       </section>
 
       {/* Seção Fotos */}
-<section className="fotos-perfil">
-  <h1>Fotos de perfil</h1>
-  <p>Adicione fotos da sua instituição para os usuários avaliarem</p>
-  <div className="fotos-container">
-    {fotos.map((foto, index) => (
-      <div key={index} className="foto-box">
-        {foto ? (
-          <div className="imagem-wrapper">
-            <img src={foto} alt={`Foto ${index + 1}`} />
-            <button
-              className="remover-imagem"
-              onClick={() => {
-                const novasFotos = [...fotos];
-                novasFotos[index] = null;
-                setFotos(novasFotos);
-              }}
-            >
-              ✖
-            </button>
-          </div>
-        ) : (
-          <input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files[0];
-              if (file) {
-                const reader = new FileReader();
-                reader.onloadend = () => {
-                  const novasFotos = [...fotos];
-                  novasFotos[index] = reader.result;
-                  setFotos(novasFotos);
-                };
-                reader.readAsDataURL(file);
-              }
-            }}
-            className="input-file"
-          />
-        )}
-      </div>
-    ))}
-  </div>
-</section>
-
-
-      <section className="atualizar-denuncias">
-        <h2>Atualizar as Denúncias</h2>
-        <p>(Carregue aqui suas atualizações de denúncia, arquivos, Word, JPEG, PNG ou MP4)</p>
-        <div className="atualizar-itens">
-          {arquivos.map((arquivo, index) => (
-            <div className="atualizar-item" key={index} onClick={() => document.getElementById(`fileInput-${index}`).click()}>
-              <input
-                id={`fileInput-${index}`}
-                type="file"
-                accept="image/*,video/*,.doc,.docx,.pdf"
-                onChange={(e) => handleFileChange(index, e)}
-                style={{ display: "none" }}
-              />
-              {arquivo ? (
-                <div className="conteudo-adicionado">
-                  {arquivo.type.startsWith("image/") ? (
-                    <img src={URL.createObjectURL(arquivo)} alt="Imagem" style={{ width: "100px" }} />
-                  ) : arquivo.type.startsWith("video/") ? (
-                    <video src={URL.createObjectURL(arquivo)} controls style={{ width: "200px" }} />
-                  ) : (
-                    <a href={URL.createObjectURL(arquivo)} download={arquivo.name}>
-                      {arquivo.name}
-                    </a>
-                  )}
+      <section className="fotos-perfil">
+        <h1>Fotos de perfil</h1>
+        <p>Adicione fotos da sua instituição para os usuários avaliarem</p>
+        <div className="fotos-container">
+          {fotos.map((foto, index) => (
+            <div key={index} className="foto-box">
+              {foto ? (
+                <div className="imagem-wrapper">
+                  <img src={foto} alt={`Foto ${index + 1}`} />
+                  <button
+                    className="remover-imagem"
+                    onClick={() => {
+                      const novasFotos = [...fotos];
+                      novasFotos[index] = null;
+                      setFotos(novasFotos);
+                    }}
+                  >
+                    ✖
+                  </button>
                 </div>
               ) : (
-                <>
-                  <span>+</span>
-                  <p>Atualizar</p>
-                </>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files[0];
+                    if (file) {
+                      const reader = new FileReader();
+                      reader.onloadend = () => {
+                        const novasFotos = [...fotos];
+                        novasFotos[index] = reader.result;
+                        setFotos(novasFotos);
+                      };
+                      reader.readAsDataURL(file);
+                    }
+                  }}
+                  className="input-file"
+                />
               )}
             </div>
           ))}
         </div>
       </section>
 
-      <section className="animais-adocao">
-          <h1>Animais para adoção</h1>
-          <p>Adicione animais para adoção </p>
-          <div className="disponiveis-info">
-            <span>Disponíveis:</span>
-            <span className="alterar-info">Clique nos ícones ou nas fotos para alterar.</span>
-          </div>
-          <div className="container-animais">
-            {animais.map((animal) => (
-              <AnimalCard 
-                key={animal.id} 
-                {...animal} 
-                onDelete={handleDeleteAnimal}
-                atualizarAnimal={(id, novosDados) => {
-                  setAnimais(animais.map(animal => 
-                    animal.id === id ? {...animal, ...novosDados} : animal
-                  ));
-                }}
-              />
-            ))}
-            <div className="adicionar-card" onClick={() => {
-              setAnimais([...animais, {
-                id: Date.now(),
-                imgSrc: "",
-                nome: "Novo Animal",
-                localizacao: "Localização",
-                sexo: "Sexo",
-                vermifugado: "Vermifugado",
-                idade: "Idade",
-              }]);
-            }}>
-              <FaPlus className="icone-adicionar" />
-            </div>
-          </div>
-        </section>
 
-        <div className="perfil-salvar">
-          <button className="btn-salvar" onClick={handleSalvar}>Salvar</button>
+      <section className="denuncias-container">
+        <h2>Atualizações de Denuncias</h2>
+
+        <div className="table-container">
+          <table className="denuncias-table">
+            <thead>
+              <tr>
+                <th>Data</th>
+                <th>Assunto</th>
+                <th>Protocolo</th>
+                <th>Status</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {denunciasPaginadas.map((denuncia) => (
+                <tr key={denuncia.id}>
+                  <td data-label="Data">{denuncia.data}</td>
+                  <td data-label="Assunto">{denuncia.assunto}</td>
+                  <td data-label="Protocolo">{denuncia.protocolo}</td>
+                  <td data-label="Status">
+                    <span className={`status-badge ${denuncia.status.toLowerCase().replace(' ', '-')}`}>
+                      {denuncia.status}
+                    </span>
+                  </td>
+                  <td data-label="Ações">
+                    <button
+                      className="btn-atualizar"
+                      onClick={() => {
+                        setDenunciaSelecionada(denuncia);
+                        setMostrarModal(true);
+                      }}
+                    >
+                      Atualizar
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+
         </div>
+
+        {mostrarModal && denunciaSelecionada && (
+          <ModalAtualizacaoDenuncia
+            denuncia={denunciaSelecionada}
+            onClose={() => setMostrarModal(false)}
+            onSave={handleSaveDenuncia}
+          />
+        )}
+      </section>
+
+      <section className="animais-adocao">
+        <h1>Animais para adoção</h1>
+        <p>Adicione animais para adoção </p>
+        <div className="disponiveis-info">
+          <span>Disponíveis:</span>
+          <span className="alterar-info">Clique nos ícones ou nas fotos para alterar.</span>
+        </div>
+        <div className="container-animais">
+          {animais.map((animal) => (
+            <AnimalCard
+              key={animal.id}
+              {...animal}
+              onDelete={handleDeleteAnimal}
+              atualizarAnimal={(id, novosDados) => {
+                setAnimais(animais.map(animal =>
+                  animal.id === id ? { ...animal, ...novosDados } : animal
+                ));
+              }}
+            />
+          ))}
+          <div className="adicionar-card" onClick={() => {
+            setAnimais([...animais, {
+              id: Date.now(),
+              imgSrc: "",
+              nome: "Novo Animal",
+              localizacao: "Localização",
+              sexo: "Sexo",
+              vermifugado: "Vermifugado",
+              idade: "Idade",
+            }]);
+          }}>
+            <FaPlus className="icone-adicionar" />
+          </div>
+        </div>
+      </section>
+
+      <div className="perfil-salvar">
+        <button className="btn-salvar" onClick={handleSalvar}>Salvar</button>
       </div>
-    
+    </div>
+
   );
 };
 
