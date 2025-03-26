@@ -30,7 +30,9 @@ const PerfilOng = () => {
   const handleSalvar = () => {
     alert("Dados salvos e publicados no ambiente público!");
   };
-
+  const handleDeleteAnimal = (id) => {
+    setAnimais(animais.filter(animal => animal.id !== id));
+  };
   return (
     <div className="perfil-container">
       {/* Seção Sobre */}
@@ -161,7 +163,6 @@ const PerfilOng = () => {
 </section>
 
 
-      {/* Seção Atualizar Denúncias */}
       <section className="atualizar-denuncias">
         <h2>Atualizar as Denúncias</h2>
         <p>(Carregue aqui suas atualizações de denúncia, arquivos, Word, JPEG, PNG ou MP4)</p>
@@ -198,39 +199,47 @@ const PerfilOng = () => {
         </div>
       </section>
 
-      {/* Seção Animais para Adoção */}
       <section className="animais-adocao">
-        <h1>Animais para adoção</h1>
-        <p>Adicione animais para adoção</p>
-        <div className="disponiveis-info">
-        <span>Disponíveis:</span>
-        <span className="alterar-info">Clique nos ícones ou nas fotos para alterar.</span>
-      </div>
-        <div className="container-animais">
-          {animais.map((animal) => (
-            <AnimalCard key={animal.id} {...animal} />
-          ))}
-<div className="adicionar-card" onClick={() => setAnimais([...animais, { 
-  id: Date.now(), 
-  imgSrc: "", 
-  nome: "Novo Animal", 
-  localizacao: "Local não definido", 
-  sexo: "", 
-  vermifugado: "", 
-  idade: "" 
-}])}>
-            <FaPlus className="icone-adicionar" />
+          <h1>Animais para adoção</h1>
+          <p>Adicione animais para adoção </p>
+          <div className="disponiveis-info">
+            <span>Disponíveis:</span>
+            <span className="alterar-info">Clique nos ícones ou nas fotos para alterar.</span>
           </div>
-        </div>
-      </section>
+          <div className="container-animais">
+            {animais.map((animal) => (
+              <AnimalCard 
+                key={animal.id} 
+                {...animal} 
+                onDelete={handleDeleteAnimal}
+                atualizarAnimal={(id, novosDados) => {
+                  setAnimais(animais.map(animal => 
+                    animal.id === id ? {...animal, ...novosDados} : animal
+                  ));
+                }}
+              />
+            ))}
+            <div className="adicionar-card" onClick={() => {
+              setAnimais([...animais, {
+                id: Date.now(),
+                imgSrc: "",
+                nome: "Novo Animal",
+                localizacao: "Localização",
+                sexo: "Sexo",
+                vermifugado: "Vermifugado",
+                idade: "Idade",
+              }]);
+            }}>
+              <FaPlus className="icone-adicionar" />
+            </div>
+          </div>
+        </section>
 
-      {/* Botão Salvar */}
-      <div className="perfil-salvar">
-        <button className="btn-salvar" onClick={handleSalvar}>
-          Salvar e Publicar
-        </button>
+        <div className="perfil-salvar">
+          <button className="btn-salvar" onClick={handleSalvar}>Salvar</button>
+        </div>
       </div>
-    </div>
+    
   );
 };
 

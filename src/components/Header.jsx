@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AcessoPerfil from "../pages/AcessoPerfil"
 import logo from "../assets/logo.svg";
 import icon_perfil from "../assets/iconperfil.svg";
@@ -12,7 +13,11 @@ export default function Header() {
   const [usuarioLogado, setUsuarioLogado] = useState(localStorage.getItem("usuarioTipo"));
   const [menuAberto, setMenuAberto] = useState(false);
   const [openMenuHamb, setOpenMenuHamb] = useState(false);
+
   const [chatbotAberto, setChatbotAberto] = useState(false);
+
+  const navigate = useNavigate();
+
 
   useEffect(() => {
     const usuarioTipo = localStorage.getItem("usuarioTipo");
@@ -22,7 +27,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("usuarioTipo");
     setUsuarioLogado(null);
-    setMenuAberto(false);
+    navigate("/"); 
   };
 
   const resetMenu = () => {

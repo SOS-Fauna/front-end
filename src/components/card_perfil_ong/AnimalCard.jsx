@@ -1,10 +1,11 @@
 import { useState } from "react";
+import { FaTimes } from "react-icons/fa"; // Importando o ícone X
 import "../../styles/AnimalCard.css"
 import Sexo from "../../assets/Sexo.svg";
 import check from "../../assets/check.svg";
 import Idade from "../../assets/Idade.svg";
 
-const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, atualizarAnimal, abrirModal }) => {
+const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, atualizarAnimal, abrirModal, onDelete }) => {
   const [dados, setDados] = useState({ nome, localizacao, sexo, vermifugado, idade });
   const [editandoCampo, setEditandoCampo] = useState(null);
   const [imagem, setImagem] = useState(imgSrc);
@@ -24,8 +25,19 @@ const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, a
     }
   };
 
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(id);
+    }
+  };
+
   return (
     <div className="animal-card">
+      {/* Botão de deletar no canto superior direito */}
+      <button className="delete-button" onClick={handleDelete}>
+        <FaTimes />
+      </button>
+      
       <input type="file" accept="image/*" style={{ display: "none" }} id={`file-input-${id}`} onChange={handleImageChange} />
       <img src={imagem} alt={dados.nome} className="animal-img" onClick={() => document.getElementById(`file-input-${id}`).click()} />
 
@@ -35,7 +47,6 @@ const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, a
         ) : (
           <span className="animal-nome" onClick={() => setEditandoCampo("nome")}>{dados.nome}</span>
         )}
-        <span className="favorito">⭐</span>
       </div>
 
       {editandoCampo === "localizacao" ? (
@@ -73,7 +84,7 @@ const AnimalCard = ({ id, imgSrc, nome, localizacao, sexo, vermifugado, idade, a
         </div>
       </div>
 
-      <button className="btn-adotar" onClick={abrirModal}>Criar</button>
+      <button className="btn-criar" onClick={abrirModal}>Criar</button>
     </div>
   );
 };

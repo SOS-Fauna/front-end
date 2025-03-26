@@ -46,7 +46,7 @@ const ModalCadastroONG = ({ fecharModal, abrirConfirmacao, onCadastroFinalizado 
   const finalizarCadastro = () => {
     if (validarCamposEtapa2()) {
       abrirConfirmacao(); 
-      onCadastroFinalizado("ONG"); // Atualiza o estado para usuário logado
+      onCadastroFinalizado("ONG"); 
     }
   };
 

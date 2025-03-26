@@ -34,10 +34,18 @@ const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecion
   const [senha, setSenha] = useState("");
 
   const handleLogin = () => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para e-mail válido
+  
     if (!email || !senha) {
       setErro("Preenchimento errado.");
       return;
     }
+  
+    if (!emailRegex.test(email)) {
+      setErro("Digite um e-mail válido.");
+      return;
+    }
+  
 
     // Usa o tipo de usuário selecionado, se disponível, senão tenta inferir pelo e-mail
     const tipoUsuario = tipoUsuarioSelecionado || (email.includes("ong") ? "ONG" : "Denunciante");
@@ -65,8 +73,10 @@ const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
   const handleCadastroFinalizado = (tipoUsuario) => {
     localStorage.setItem("usuarioTipo", tipoUsuario);
     setUsuarioLogado(tipoUsuario);
-    fecharModal();
+    dispatch({ type: "ABRIR_CONFIRMACAO" }); // Garante que a confirmação será aberta antes de fechar o modal
   };
+  
+  
 
   return (
     <div className="modal-overlay">
