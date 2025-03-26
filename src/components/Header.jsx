@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
-import AcessoPerfil from "../pages/AcessoPerfil"
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.svg";
 import icon_perfil from "../assets/iconperfil.svg";
 import { FaUserCircle } from "react-icons/fa";
+import AcessoPerfil from "../pages/AcessoPerfil"
 import "../styles/header.css";
 import Chatbot from "./Chatbot";
+
 
 export default function Header() {
   const [modalAberto, setModalAberto] = useState(false);
