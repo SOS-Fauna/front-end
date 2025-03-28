@@ -66,7 +66,7 @@ const Adocao = () => {
             ]}
             onFiltroChange={handleFiltroChange}
           />
-          <div className="container-animais">
+          <div className="container-adocao">
             {animaisPagina.map((animal) => (
               <Card key={animal.id} item={animal} botaoTexto="Quero Adotar" />
             ))}
