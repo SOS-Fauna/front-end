@@ -57,19 +57,20 @@ export default function Header() {
             <div className={openMenuHamb ? "barra3-ative" : "barra3"}></div>
           </div>
 
-          {/* Lista de Navegação */}
           <ul className={openMenuHamb ? "nav-list on" : "nav-list"} onClick={resetMenu}>
             <li className="nav-item">
               <Link onClick={() => setChatbotAberto(true)}>Denuncie Aqui</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/Ong" >Encontre uma Ong</Link>
-            </li>
+            {!usuarioLogado || usuarioLogado === "Denunciante" ? (
+              <li className="nav-item">
+                <Link to="/Ong" >Encontre uma Ong</Link>
+              </li>
+            ) : null}
             <li className="nav-item">
               <Link to="/QuemSomos" >Quem Somos</Link>
             </li>
             <li className="nav-item">
-              <Link to="/Adocao" >Adoção</Link>
+              <Link to={usuarioLogado === "ONG" ? "/AcompanhamentoDeAdocao" : "/Adocao" }>Adoção</Link>
             </li>
             <li className="nav-item">
               <Link to="/Servico-Veterinarios" >Atendimento Veterinário</Link>
@@ -102,7 +103,6 @@ export default function Header() {
         </nav>
       </header>
 
-      {/* Modal de Acesso */}
       {modalAberto && <AcessoPerfil fecharModal={() => setModalAberto(false)} setUsuarioLogado={setUsuarioLogado} />}
 
        {chatbotAberto &&

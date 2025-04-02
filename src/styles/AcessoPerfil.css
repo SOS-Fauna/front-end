@@ -29,27 +29,34 @@
     font-size: 2.3rem;
     text-align: center;
   }
+ 
   
   .botoes-acesso {
     display: flex;
     justify-content: center;
-    gap: 10px; 
+    gap: 20px; 
   }
   
   .botoes-acesso button {
-    flex: 1; 
-    max-width: 150px; 
-    padding: 10px;
-    font-size: 16px;
-    background-color: #FD7C17; 
+    width: 220px; 
+    height: 60px; 
+    font-size: 20px; 
+    background-color: #FD7C17;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px; 
     cursor: pointer;
     color: white;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.2s ease;
   }
   
   .botoes-acesso button:hover {
-    background-color: #e26b10;
+    background-color: #E66A10;
+    transform: scale(1.05);
+  }
+  
+  .botoes-acesso button:active {
+    transform: scale(0.98);
   }
   .btn-google {
     background: white;
@@ -121,7 +128,20 @@
   .links-acesso a:hover {
     text-decoration: underline;
   }
+  .btn-voltar {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 15px;
+    cursor: pointer;
+  }
   
+  .btn-voltar:hover {
+    color: #555;
+  }
   .modal-logo {
     width: 80px;
     margin-bottom: 10px;
@@ -198,19 +218,4 @@
   color: red;
   font-size: 14px;
   margin-top: 4px;
-}
-
-.btn-voltar {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  background: none;
-  border: none;
-  color: #333;
-  font-size: 20px;
-  cursor: pointer;
-}
-
-.btn-voltar:hover {
-  color: #555;
 }

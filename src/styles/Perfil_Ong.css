@@ -38,7 +38,7 @@ html, body {
 .sobre-text h1 {
   font-size: 2rem;
   color: #333;
-  margin-bottom: 1rem; /* Dá um respiro entre o título e o parágrafo */
+  margin-bottom: 1rem; 
 }
 
 .sobre-text p {
@@ -127,6 +127,19 @@ html, body {
   gap: 2rem;
   justify-items: center;
 }
+
+.dados-icone {
+  font-size: 2.3rem; 
+  color: #333; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 4rem; 
+  height: 4rem;
+  border-radius: 50%;
+}
+
+
 .dados-item {
   display: flex;
   flex-direction: column;
@@ -137,14 +150,8 @@ html, body {
   padding: 0.5rem;
 }
 
-.dados-item img {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  transition: transform 0.2s ease-in-out;
-}
 
-.dados-item img:hover {
+.dados-icone:hover {
   transform: scale(1.1);
 }
 
