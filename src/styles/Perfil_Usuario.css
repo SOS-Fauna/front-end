@@ -48,26 +48,27 @@
     color: #666;
 }
 
-.perfil-imagem {
-    width: 150px;
-    height: 150px;
-    position: relative;
-}
+.dados-icones {
+    font-size: 2.3rem; 
+    color: #333; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem; 
+    height: 4rem;
+    border-radius: 50%;
+  }
 
+.dados-icones :hover{
+    transform: scale(1.1);
+}
+  
 .perfil-contato-arroba {
     display: flex;
     flex-direction: column; 
     align-items: center;
     gap: 1rem;
     margin-top: 2rem;
-}
-
-.editar-info {
-    font-size: 1rem;
-    color: #777;
-    font-style: italic;
-    margin-bottom: 0.5rem;
-    text-align: center;
 }
 
 .perfil-contato-arroba-conteudo {
@@ -80,24 +81,6 @@
     flex-direction: column;
     align-items: center;
     gap: 0.8rem;
-}
-
-.perfil-contato img, .perfil-arroba img {
-    width: 50px;
-    height: 50px;
-    cursor: pointer;
-}
-
-.perfil-contato span, .perfil-arroba span {
-    font-size: 1.1rem;
-    color: #444;
-    cursor: pointer;
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.perfil-contato span:hover, .perfil-arroba span:hover {
-    color: #FD7C17;
 }
 
 .perfil-salvar {
@@ -123,31 +106,42 @@
 }
 
 
-
-/* Responsividade */
 @media (max-width: 768px) {
+    .dados-icones {
+        font-size: 1.8rem; 
+        width: 3rem; 
+        height: 3rem; 
+    }
     .perfil-info {
         flex-direction: column;
         align-items: center;
         text-align: center;
     }
 
-    .perfil-imagem {
-        width: 120px;
-        height: 120px;
-    }
-
-    .perfil-contato-arroba {
-        flex-direction: column;
-        gap: 1.5rem;
-    }
-
-    .perfil-contato img, .perfil-arroba img {
-        width: 40px;
-        height: 40px;
+    .perfil-contato-arroba-conteudo {
+        gap: 1.5rem; 
     }
 }
 
+@media (max-width: 480px) {
+    .dados-icones {
+        font-size: 1.5rem; 
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .dados-icones {
+        font-size: 1.5rem; 
+        width: 2.5rem;
+        height: 2.5rem;
+    }
+
+    .perfil-contato-arroba-conteudo {
+        gap: 1rem;
+    }
+}
 
 .historico-denuncias {
     margin-top: 2rem;
