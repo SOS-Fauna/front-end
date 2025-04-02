@@ -23,16 +23,12 @@ function QuemSomos() {
     return (
 
         <div>
-            {/* <div className='imgPata'>
-                <img src={logoPata} alt="logo pata" />
-            </div> */}
-
 
             <div className='textQuemSomos'>
 
                 <h1>Quem Somos</h1>
 
-                <p>Somos uma plataforma dedicada à proteção e ao bem-estar dos animais, criada com o propósito de ser uma ponte entre aqueles que testemunham situações de maus-tratos e as autoridades ou organizações competentes para agir. Acreditamos que cada denúncia é um passo importante para construir um mundo mais justo e humano, onde todos os seres vivos sejam tratados com respeito e dignidade.</p><br />
+                <p>Somos uma plataforma dedicada à proteção e ao bem-estar dos animais. Nosso propósito é ser uma ponte entre aqueles que testemunham maus-tratos e as autoridades competentes para agir. Acreditamos que cada denúncia é um passo importante para construir um mundo mais justo e humano, onde todos os seres vivos sejam tratados com respeito e dignidade.</p><br />
 
                 <p>Nossa missão vai além de oferecer um canal de denúncias. Queremos conscientizar a sociedade sobre a importância de cuidar e proteger os animais, promovendo uma cultura de respeito à vida. Por meio da tecnologia, buscamos criar uma ferramenta intuitiva e acessível, que capacite as pessoas a agir contra injustiças de maneira prática, segura e eficiente.</p><br />
 

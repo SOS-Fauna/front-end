@@ -15,7 +15,7 @@ export function ChatbotBase() {
   const [rua, setRua] = useState("");
   const [finalizado, setFinalizado] = useState(false);
   const [mensagens, setMensagens] = useState([
-    "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar sua denúncia de forma rápida. Clique para iniciar."
+    "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar seu atendimento de forma rápida. Clique para iniciar."
   ]);
 
   const avancarEtapa = () => {

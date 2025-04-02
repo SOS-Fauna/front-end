@@ -1,7 +1,7 @@
 .textQuemSomos {
     font-size: 1.1rem;
-    margin-left: 15vw;
-    margin-right: 12vw;
+    margin-left: 18vw;
+    margin-right: 18vw;
     margin-bottom: 10vh;
     padding-top: 20vh;
   }
@@ -11,6 +11,10 @@
     margin-bottom: 1vw;
     font-size: clamp(28px, 3.5vw, 35px);
     /* valor mínimo, "ideal", e máximo que o navegador se ajustará para ficar responsivo */
+  }
+
+  .textQuemSomos p {
+    font-size: 0.95rem;
   }
   
   /* linha decorativa no texto */
@@ -61,7 +65,7 @@
   }
   
   .textrodape {
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: center;
     margin: 10vh 25vw;
   }
