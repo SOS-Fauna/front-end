@@ -1,0 +1,271 @@
+/* Estilos gerais */
+.acompanhamento-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .filtro-abas-container {
+    width: 100%;
+    margin-bottom: 10px; /* Espaço entre as abas e os cards */
+}
+
+.abas {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.container-animais-acom {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+    gap: 20px;
+    margin-top: 10px;
+    width: 100%;
+}
+
+  
+  .abas button {
+    padding: 10px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    position: relative;
+  }
+  
+  .abas button.ativa {
+    font-weight: bold;
+  }
+  
+  .abas button.ativa::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #4CAF50;
+  }
+  
+ 
+  .animal-card-acom {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s;
+  }
+  
+  .animal-card-acom:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  
+  .animal-img-container-acom {
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .animal-img-container-acom img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .animal-info-acom {
+    padding: 15px;
+  }
+  
+  .animal-status-acom {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+  }
+  
+  .status-icon {
+    color: #4CAF50;
+  }
+  
+  .detalhes-btn-acom {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background: #4285F4;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  /* Formulário de adição */
+  .animal-card-edicao {
+    display: flex;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 20px;
+  }
+  
+  .animal-info-edicao {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .input-nome {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .input-url-imagem {
+    width: 100%;
+    padding: 8px;
+    margin-top: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .form-group select,
+  .form-group textarea,
+  .form-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .form-group textarea {
+    min-height: 80px;
+  }
+  
+  .form-group-detalhes {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+  
+  .publicar-btn {
+    background: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .publicar-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  /* Modal */
+  .modal-overlay-acom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content-acom {
+    background: white;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 20px;
+    position: relative;
+  }
+  
+  .close-modal-acom {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  .modal-header-acom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .icone-editar-acom {
+    cursor: pointer;
+    color: #4285F4;
+  }
+  
+  .modal-body-acom {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .modal-img-container-acom {
+    flex: 1;
+  }
+  
+  .modal-img-container-acom img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+  }
+  
+  .modal-info-acom {
+    flex: 2;
+  }
+  
+  .modal-actions-acom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .cancelar-btn-acom {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .salvar-btn-acom {
+    background: #4285F4;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+  }

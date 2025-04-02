@@ -9,6 +9,7 @@ import MinhasDenuncias from "../pages/area_restrita/MinhasDenuncias";
 import ServicosVeterinarios from "../pages/ServicosVeterinarios";
 import PerfilOng from "../pages/area_restrita/Perfil_Ong";
 import DetalhesDenuncia from "../pages/area_restrita/Detalhes_MinhasDenuncias";
+import AcompanhamentoAdocao_ONG from "../pages/area_restrita/AcompanhamentoAdocao_ONG";
 
 function AppRoutes() {
   return (
@@ -23,6 +24,7 @@ function AppRoutes() {
       <Route path = "/perfil-ong" element={<PerfilOng/>}/>
       <Route path="/minhas-denuncias" element={<MinhasDenuncias/>}/>
       <Route path="/detalhesDenuncias" element={<DetalhesDenuncia/>}/>
+      <Route path="/AcompanhamentoDeAdocao" element={<AcompanhamentoAdocao_ONG/>}/>
     </Routes>
   );
 }
