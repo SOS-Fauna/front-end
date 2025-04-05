@@ -214,26 +214,6 @@ html, body {
   cursor: pointer;
 }
 
-.animais-adocao {
-  max-width: 1120px;
-  margin: auto;
-  padding: 2rem;
-  margin-bottom: 6rem;
-}
-
-.animais-adocao h1 {
-  font-size: 2rem;
-  text-align: left;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.animais-adocao p {
-  font-size: 1.2rem;
-  color: #555;
-  margin-bottom: 1rem;
-}
-
 .disponiveis-info {
   display: flex;
   justify-content: space-between;
@@ -246,29 +226,6 @@ html, body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 1.5rem;
-}
-
-.adicionar-card {
-  width: 70px;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px dashed #fd7c17;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-  margin-left: 20px; 
-}
-
-.adicionar-card:hover {
-  background-color: rgba(253, 124, 23, 0.2);
-  transform: scale(1.1);
-}
-
-.icone-adicionar {
-  font-size: 1.5rem; 
-  color: #fd7c17;
 }
 
 .denuncias-container {
@@ -499,20 +456,6 @@ section {
 }
 
 @media (max-width: 480px) {
-  .animais-adocao {
-      padding: 0.5rem;
-      margin-bottom: 3rem;
-  }
-
-  .animais-adocao h1 {
-      font-size: 1.4rem;
-      text-align: center;
-  }
-
-  .animais-adocao p {
-      font-size: 0.9rem;
-      text-align: center;
-  }
 
   .disponiveis-info {
       flex-direction: column;
