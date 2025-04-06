@@ -4,7 +4,7 @@ import logo from "../assets/logo.svg";
 function Footer() {
     return (
         <div className="footer">
-            <img src={logo} alt="" />
+            <img className="logo" src={logo} alt="" />
         </div>
     )
 }
