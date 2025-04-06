@@ -14,11 +14,13 @@ export function ChatbotBase() {
   const [bairro, setBairro] = useState("");
   const [rua, setRua] = useState("");
   const [finalizado, setFinalizado] = useState(false);
+  const [numDenuncia, setnumDenuncia] = useState("");
   const [mensagens, setMensagens] = useState([
-    "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar seu atendimento de forma rápida. Clique para iniciar."
+    "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar seu atendimento de forma rápida. Escolha uma opção:"
   ]);
 
-  const avancarEtapa = () => {
+  // Realização de denuncias
+  const fazerDenuncia = () => {
     switch (etapa) {
       case 0:
         setMensagens([...mensagens, "Bot: Muito bem! Agora me diga seu nome:"]);
@@ -73,14 +75,61 @@ export function ChatbotBase() {
     }
   };
 
+  const consultarDenuncia = () => {
+    switch (etapa) {
+      case 0:
+        setMensagens([...mensagens, "Bot: Por favor informe o número de protocolo:"]);
+        setEtapa(20);
+        break;
+
+      case 20:
+        //chamada para o serviço de consulta denuncia 
+        //StatusCode
+        //Response
+        let mensagemRetorno = null;
+
+        if (numDenuncia === "123456") {
+          mensagemRetorno = "Bot: Denuncia n°: 123456 \n  Status: Em andamento. \n Orgão: Teste \n Telefone: (81)99008-8008 \n Rede Social: @aquiPetSave";
+
+        } else {
+          mensagemRetorno = "Bot: Denúncia não encontrada, tente novamente.";
+        }
+
+        setMensagens([...mensagens, `Você: ${numDenuncia}`, mensagemRetorno]);
+        setEtapa(0);
+        break;
+
+      default:
+        setMensagens([...mensagens, "Bot: Erro! Por favor tente novamente mais tarde."]);
+        break;
+
+      // aguardando API para gerar o número de protocolo
+    }
+  };
+
+  function textCom(men) {
+   let mensagemArray = men.split("\n");
+    return (mensagemArray.map((linha) => (
+      <>
+        <span >
+          {linha}
+          <br />
+        </span>
+      </>
+    )));
+  }
+
   return (
     <div className="chat-container">
 
       <div className="mensagem-container">
-        {mensagens.map((mensagem, indice) => (
+        {mensagens.map((mensagem) => (
           <div className='txtChat'>
-            <div key={indice} className={mensagem.includes("Bot:") ? "mensagemBot" : "mensagemUser"}>
-              <p className='msg'>{mensagem}</p>
+            <div className={mensagem.includes("Bot:") ? "mensagemBot" : "mensagemUser"}>
+
+              {/* verifica o texto para pular linha */}
+              <p className='msg'>{mensagem.includes("\n") ? textCom(mensagem) : mensagem}
+              </p>
             </div>
           </div>
         ))}
@@ -91,7 +140,9 @@ export function ChatbotBase() {
           {etapa === 0 &&
             <div className='botaoIniciarPai'>
               <button
-                className="botaoIniciar" onClick={avancarEtapa}>Iniciar</button>
+                className="botaoDenuncia" onClick={fazerDenuncia}>Fazer denúncia</button>
+              <button
+                className="botaoDenuncia" onClick={consultarDenuncia}>Consultar denúncia</button>
             </div>}
 
           {etapa === 1 && (
@@ -99,7 +150,7 @@ export function ChatbotBase() {
               <ChatbotInput type={"text"}
                 placeholder={"Informe seu nome"}
                 setValor={setNome}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
               />
             </>
           )}
@@ -109,7 +160,7 @@ export function ChatbotBase() {
               <ChatbotInput type={"email"}
                 placeholder={"Informe seu email"}
                 setValor={setEmail}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
               />
             </>
           )}
@@ -119,7 +170,7 @@ export function ChatbotBase() {
               <ChatbotInput type={"password"}
                 placeholder={"Informe uma senha"}
                 setValor={setSenha}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
                 tamanhoMin={6}
               />
             </>
@@ -130,7 +181,7 @@ export function ChatbotBase() {
               <ChatbotInput type={"text"}
                 placeholder={"Informe o animal envolvido"}
                 setValor={setAnimal}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
               />
             </>
           )}
@@ -140,14 +191,14 @@ export function ChatbotBase() {
               <ChatbotInput type={"text"}
                 placeholder={"Informe o nome do agressor (se houver)"}
                 setValor={setAgressor}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
                 campoObrigatorio={false}
               />
             </>
           )}
 
           {etapa === 6 && (
-            <form action="#" onSubmit={avancarEtapa}>
+            <form action="#" onSubmit={fazerDenuncia}>
               <div className="input-container">
                 <textarea
                   rows={4} cols={50}
@@ -171,7 +222,7 @@ export function ChatbotBase() {
               <ChatbotInput type={"text"}
                 placeholder={"Informe o bairro"}
                 setValor={setBairro}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
               />
             </>
           )}
@@ -181,10 +232,23 @@ export function ChatbotBase() {
               <ChatbotInput type={"text"}
                 placeholder={"Informe o nome da rua"}
                 setValor={setRua}
-                avancarEtapa={avancarEtapa}
+                avancarEtapa={fazerDenuncia}
               />
             </>
           )}
+
+          {/* Etapas de consulta de denúncia */}
+
+          {etapa === 20 && (
+            <>
+              <ChatbotInput type={"text"}
+                placeholder={"Informe o número de protocolo"}
+                setValor={setnumDenuncia}
+                avancarEtapa={consultarDenuncia}
+              />
+            </>
+          )}
+
         </>
       )}
     </div>

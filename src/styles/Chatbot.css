@@ -1,10 +1,9 @@
-
 .telaBasePai {
     margin-top: 16vh;
     animation: slideInTop 0.5s ease-out forwards;
 }
- 
- .telaBase {
+
+.telaBase {
     width: 90%;
     height: 80vh;
     max-width: 28rem;
@@ -19,7 +18,6 @@
     width: 100%;
     min-height: 45vh;
     flex: 1;
-    
     padding: 10px;
     background-color: #d9d9d9;
     border: 1px solid #d9d9d9;
@@ -32,12 +30,11 @@
     margin-top: -5vh;
 }
 
-.mensagem-container{
+.mensagem-container {
     overflow-y: auto;
-
 }
 
-.ftCao{
+.ftCao {
     height: 12vh;
     width: auto;
 }
@@ -46,7 +43,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
+    padding: 1.4rem;
     background-color: #FD7C17;
     border-radius: 2rem 2rem 9rem 9rem;
     min-height: 5rem;
@@ -71,7 +68,7 @@
     cursor: pointer;
 }
 
-.chat-container{
+.chat-container {
     margin-left: 0.8rem;
     margin-right: 0.8rem;
     height: 100%;
@@ -85,9 +82,9 @@
 
 .mensagemBot {
     background-color: #FD7C17;
-    padding: 0.3rem;
+    padding: 0.5rem;
     border-radius: 10px;
-    margin-bottom: 0.6rem;
+    margin-bottom: 0.8rem;
     margin-right: auto;
     text-align: left;
     font-size: 0.9rem;
@@ -95,14 +92,14 @@
 
 .mensagemUser {
     background-color: #4691F2;
-    padding: 0.3rem;
+    padding: 0.5rem;
     border-radius: 10px;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.8rem;
     margin-left: auto;
     font-size: 0.9rem;
 }
 
-.action-button{
+.action-button {
     color: white;
     background-color: #4691F2;
     border-radius: 20%;
@@ -112,24 +109,38 @@
     display: flex;
 }
 
-.form-pai{
+.action-button:hover{
+    cursor: pointer;
+    background-color: #FD7C17;
+}
+
+.form-pai {
     margin-top: auto;
 }
 
 .button-container {
     display: flex;
-
+    margin-bottom: 1rem;
 }
 
-.botaoIniciarPai{
+.botaoIniciarPai {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5vh;
     width: 100%;
+    gap: 1rem;
 }
 
-.botaoIniciar{
+.botaoDenuncia:hover{
+    cursor: pointer;
+    color: #4691F2;
+    background-color: white;
+    border: solid;
+    border-width: 0.15em;
+}
+
+.botaoDenuncia {
     color: white;
     background-color: #4691F2;
     border: none;
@@ -141,11 +152,12 @@
 /* Entrada do chatbot*/
 @keyframes slideInTop {
     from {
-      transform: translateY(-10%);
-      opacity: 0;
+        transform: translateY(-10%);
+        opacity: 0;
     }
+
     to {
-      transform: translateY(-20);
-      opacity: 1;
+        transform: translateY(-20);
+        opacity: 1;
     }
-  }
+}
