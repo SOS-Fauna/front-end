@@ -11,7 +11,7 @@
     z-index: 1000;
   }
   
-  .modal-container-card{
+  .modal-container-card {
     background: white;
     padding: 2rem;
     border-radius: 10px;
@@ -19,7 +19,24 @@
     text-align: center;
     position: relative;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    animation: slideUp 0.2s ease; 
   }
+
+  @keyframes slideUp {
+    from {
+      transform: translateY(100px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+  
+  .modal-container-card {
+    animation: slideUp 0.4s ease-out;
+  }
+  
   
   .modal-close {
     position: absolute;

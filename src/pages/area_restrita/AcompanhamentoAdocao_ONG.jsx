@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Filtro from "../../components/Filtro";
 import "../../styles/AcompanhamentoAdocao_ONG.css";
-import { FaPlus, FaInfoCircle, FaEdit, FaPaw, FaCheckCircle, FaTimesCircle } from "react-icons/fa";
+import { FaPlus, FaInfoCircle, FaEdit, FaPaw, FaCheckCircle, FaTimesCircle, FaTrash } from "react-icons/fa";
 import AnimalCard from "../../components/tela_acompanhamento-adocao/AnimalCard";
 import ModalAcompanhamento from "../../components/tela_acompanhamento-adocao/ModalAcompanhamento";
 import animal2 from '../../assets/animal2.svg';
 
 function AcompanhamentoAdocao_ONG() {
+
+    useEffect(() => {
+        const dadosSalvos = localStorage.getItem("animais");
+        if (dadosSalvos) {
+            setAnimais(JSON.parse(dadosSalvos));
+        }
+    }, []);
+
     const [abaAtiva, setAbaAtiva] = useState("acompanhamento");
     const [animais, setAnimais] = useState([
         {
@@ -63,17 +71,38 @@ function AcompanhamentoAdocao_ONG() {
             return;
         }
 
+        const animalAtualizado = { ...animalParaPublicar, publicado: true };
 
+        const novaLista = animaisEmEdicao.map(a =>
+            a.id === id ? animalAtualizado : a
+        );
+        setAnimaisEmEdicao(novaLista);
+
+        setAnimais(prev => [...prev, animalAtualizado]);
+
+        // retira da lista de edição
         setAnimaisEmEdicao(prev => prev.filter(a => a.id !== id));
-        setAnimais(prev => [...prev, animalParaPublicar]);
+
+        // salva no localStorage 
+        localStorage.setItem("animais", JSON.stringify([...animais, animalAtualizado]));
 
         setMensagem(`${animalParaPublicar.nome} publicado com sucesso!`);
         setTimeout(() => setMensagem(""), 3000);
     };
 
+
     const removerAnimal = (id) => {
         setAnimaisEmEdicao(prev => prev.filter(a => a.id !== id));
     };
+
+    const excluirAnimalPublicado = (id) => {
+        const novaLista = animais.filter(animal => animal.id !== id);
+        setAnimais(novaLista);
+        localStorage.setItem("animais", JSON.stringify(novaLista));
+        setMensagem("Animal removido com sucesso!");
+        setTimeout(() => setMensagem(""), 3000);
+      };
+      
 
     const abrirModalDetalhes = (animal) => {
         setAnimalSelecionado({ ...animal });
@@ -114,7 +143,7 @@ function AcompanhamentoAdocao_ONG() {
                     onFiltroChange={(filtros) => console.log("Filtros aplicados:", filtros)}
                 />
             </div>
-
+            {/* abas fixas */}
             <div className="conteudo-container">
                 <div className="abas">
                     <button
@@ -130,7 +159,7 @@ function AcompanhamentoAdocao_ONG() {
                         Adicionar Animal
                     </button>
                 </div>
-
+                {/* aba acompanhamento */}
                 {abaAtiva === "acompanhamento" ? (
                     <section className="animais-adocao-acom">
                         <h1>Animais Cadastrados</h1>
@@ -147,18 +176,27 @@ function AcompanhamentoAdocao_ONG() {
                                             <span>{animal.status}</span>
                                         </p>
                                         <p><strong>Tempo no Sistema:</strong> {animal.tempoSistema}</p>
-                                        <button
-                                            className="detalhes-btn-acom"
-                                            onClick={() => abrirModalDetalhes(animal)}
-                                        >
-                                            <FaInfoCircle /> Mais Detalhes
-                                        </button>
+                                        <div className="botoes-acom">
+                                            <button
+                                                className="detalhes-btn-acom"
+                                                onClick={() => abrirModalDetalhes(animal)}
+                                            >
+                                                <FaInfoCircle /> Mais Detalhes
+                                            </button>
+                                            <button
+                                                className="lixeira-btn-acom"
+                                                onClick={() => excluirAnimalPublicado(animal.id)}
+                                            >
+                                                <FaTrash /> 
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </section>
                 ) : (
+                    // aba adicionar animal 
                     <section className="adicionar-animal">
                         <h1>Adicionar Novo Animal</h1>
                         <div className="adicionar-card" onClick={adicionarAnimal}>
@@ -187,7 +225,7 @@ function AcompanhamentoAdocao_ONG() {
                         </div>
                     </section>
                 )}
-
+                {/* modal ==> mais detalhes */}
                 <div className="modal-body-acom">
                     <div className="modal-img-container-acom">
                         <ModalAcompanhamento

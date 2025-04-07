@@ -39,7 +39,7 @@ const Card = ({ item, botaoTexto }) => {
         </div>
       )}
 
-      <button className="btn-adotar" onClick={abrirModal}>{botaoTexto}</button>
+      <button className="btn" onClick={abrirModal}>{botaoTexto}</button>
 
       {modalAberto && (
         <ModalCard item={item} fecharModal={fecharModal} botaoTexto={botaoTexto} />
