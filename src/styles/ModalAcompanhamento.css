@@ -1,0 +1,140 @@
+.modal-overlay-acom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+  }
+  
+  .modal-content-acom {
+    background: white;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 700px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 30px 25px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-in-out;
+    transition: all 0.3s ease;
+  }
+  
+  .close-modal-acom {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: #999;
+    cursor: pointer;
+    transition: color 0.2s ease;
+  }
+  
+  .close-modal-acom:hover {
+    color: #ff6f00; /* laranja */
+  }
+  
+  .modal-header-acom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+
+  }
+  
+  .icone-editar-acom {
+    cursor: pointer;
+    color: #4285F4;
+    font-size: 20px;
+    transition: transform 0.2s;
+  }
+  
+  .icone-editar-acom:hover {
+    transform: scale(1.1);
+  }
+  
+  .modal-body-acom {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  @media (min-width: 600px) {
+    .modal-body-acom {
+      flex-direction: row;
+    }
+  }
+  
+  .modal-img-container-acom {
+    flex: 1;
+  }
+  
+  .modal-img-container-acom img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 2px solid #eee;
+  }
+  
+  .modal-info-acom {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  
+  .modal-actions-acom {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 25px;
+  }
+  
+  .cancelar-btn-acom {
+    background: #f44336;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .cancelar-btn-acom:hover {
+    background: #d32f2f;
+  }
+  
+  .salvar-btn-acom {
+    background: #4285F4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .salvar-btn-acom:hover {
+    background: #3367d6;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0 }
+    to { opacity: 1 }
+  }
+  
+  @keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0 }
+    to { transform: translateY(0); opacity: 1 }
+  }
