@@ -1,15 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Chatbot.css'
 import ChatbotInput from '../ChatbotInput';
-import { LuSend } from 'react-icons/lu';
 
-export function ChatbotBase() {
+export function ChatbotBase({ reset }) {
   const [etapa, setEtapa] = useState(0);
-  const [nome, setNome] = useState("");
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
   const [animal, setAnimal] = useState("");
   const [agressor, setAgressor] = useState("");
+  const [data, setData] = useState("");
   const [descricao, setDescricao] = useState("");
   const [bairro, setBairro] = useState("");
   const [rua, setRua] = useState("");
@@ -19,50 +16,55 @@ export function ChatbotBase() {
     "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar seu atendimento de forma rápida. Escolha uma opção:"
   ]);
 
+  //Configuração do scroll
+  const elementoRef = useRef(null);
+  useEffect(() => {
+    const subElements = elementoRef.current.getElementsByClassName("msg");
+    subElements[subElements.length - 1].scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [mensagens]);
+
+  useEffect(() => {
+    setEtapa(0);
+    setMensagens([
+      "Bot: Olá, seja bem-vindo(a)!", "Bot: Vamos iniciar seu atendimento de forma rápida. Escolha uma opção:"
+    ]);
+  }, [reset]);
+
   // Realização de denuncias
   const fazerDenuncia = () => {
     switch (etapa) {
       case 0:
-        setMensagens([...mensagens, "Bot: Muito bem! Agora me diga seu nome:"]);
+        setMensagens([...mensagens, "Você: Fazer denúncia", "Bot: Informe qual animal está em condições de maus tratos."]);
         setEtapa(1);
         break;
 
       case 1:
-        setMensagens([...mensagens, `Você: ${nome}`, "Bot: Muito bem! Agora me diga seu email:"]);
+        setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver)."]);
         setEtapa(2);
         break;
 
       case 2:
-        setMensagens([...mensagens, `Você: ${email}`, "Bot: Muito bem! Agora crie uma senha:"]);
+        setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Informe a data do ocorrido."]);
         setEtapa(3);
         break;
 
       case 3:
-        setMensagens([...mensagens, `Senha: ${"*".repeat(senha.length)}`, "Bot: Agora, diga que tipo de animal está em condições de maus tratos?"]);
+        const dataformatada = data.split("-");
+        setMensagens([...mensagens, `Você: ${dataformatada[2] + "/" + dataformatada[1] + "/" + dataformatada[0]}`, "Bot: Agora, descreva o ocorrido (máximo de 255 caracteres)."]);
         setEtapa(4);
         break;
 
       case 4:
-        setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver)."]);
+        setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente."]);
         setEtapa(5);
         break;
 
       case 5:
-        setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Agora, descreva o ocorrido (máximo de 255 caracteres)."]);
+        setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente."]);
         setEtapa(6);
         break;
 
       case 6:
-        setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente."]);
-        setEtapa(7);
-        break;
-
-      case 7:
-        setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente."]);
-        setEtapa(8);
-        break;
-
-      case 8:
         setMensagens([...mensagens, `Você: ${rua}`, "Bot: Muito bem, processo finalizado."]);
         setFinalizado(true);
         break;
@@ -73,12 +75,13 @@ export function ChatbotBase() {
 
       // aguardando API para gerar o número de protocolo
     }
+
   };
 
   const consultarDenuncia = () => {
     switch (etapa) {
       case 0:
-        setMensagens([...mensagens, "Bot: Por favor informe o número de protocolo:"]);
+        setMensagens([...mensagens, "Você: Consultar denúncia", "Bot: Por favor informe o número de protocolo:"]);
         setEtapa(20);
         break;
 
@@ -107,8 +110,8 @@ export function ChatbotBase() {
     }
   };
 
-  function textCom(men) {
-   let mensagemArray = men.split("\n");
+  function quebrarLinha(msgLinha) {
+    let mensagemArray = msgLinha.split("\n");
     return (mensagemArray.map((linha) => (
       <>
         <span >
@@ -120,15 +123,16 @@ export function ChatbotBase() {
   }
 
   return (
-    <div className="chat-container">
+    <div className="chat-container" >
 
-      <div className="mensagem-container">
+      <div className="mensagem-container" ref={elementoRef}  >
         {mensagens.map((mensagem) => (
+
           <div className='txtChat'>
             <div className={mensagem.includes("Bot:") ? "mensagemBot" : "mensagemUser"}>
 
               {/* verifica o texto para pular linha */}
-              <p className='msg'>{mensagem.includes("\n") ? textCom(mensagem) : mensagem}
+              <p className='msg'>{mensagem.includes("\n") ? quebrarLinha(mensagem) : mensagem.replace("Bot: ", "").replace("Você: ", "")}
               </p>
             </div>
           </div>
@@ -146,95 +150,53 @@ export function ChatbotBase() {
             </div>}
 
           {etapa === 1 && (
-            <>
-              <ChatbotInput type={"text"}
-                placeholder={"Informe seu nome"}
-                setValor={setNome}
-                avancarEtapa={fazerDenuncia}
-              />
-            </>
+            <ChatbotInput type={"text"}
+              placeholder={"Informe o animal envolvido"}
+              setValor={setAnimal}
+              avancarEtapa={fazerDenuncia}
+            />
           )}
 
           {etapa === 2 && (
-            <>
-              <ChatbotInput type={"email"}
-                placeholder={"Informe seu email"}
-                setValor={setEmail}
-                avancarEtapa={fazerDenuncia}
-              />
-            </>
+            <ChatbotInput type={"text"}
+              placeholder={"Informe o nome do agressor (se houver)"}
+              setValor={setAgressor}
+              avancarEtapa={fazerDenuncia}
+              campoObrigatorio={false}
+            />
           )}
 
           {etapa === 3 && (
-            <>
-              <ChatbotInput type={"password"}
-                placeholder={"Informe uma senha"}
-                setValor={setSenha}
-                avancarEtapa={fazerDenuncia}
-                tamanhoMin={6}
-              />
-            </>
+            <ChatbotInput type={"date"}
+              placeholder={"Informe a data do ocorrido"}
+              setValor={setData}
+              avancarEtapa={fazerDenuncia}
+            />
           )}
 
           {etapa === 4 && (
-            <>
-              <ChatbotInput type={"text"}
-                placeholder={"Informe o animal envolvido"}
-                setValor={setAnimal}
-                avancarEtapa={fazerDenuncia}
-              />
-            </>
+            <ChatbotInput type={"text"}
+              placeholder={"Informe o ocorrido"}
+              setValor={setDescricao}
+              avancarEtapa={fazerDenuncia}
+              tamanhoMin={20}
+            />
           )}
 
           {etapa === 5 && (
-            <>
-              <ChatbotInput type={"text"}
-                placeholder={"Informe o nome do agressor (se houver)"}
-                setValor={setAgressor}
-                avancarEtapa={fazerDenuncia}
-                campoObrigatorio={false}
-              />
-            </>
+            <ChatbotInput type={"text"}
+              placeholder={"Informe o bairro"}
+              setValor={setBairro}
+              avancarEtapa={fazerDenuncia}
+            />
           )}
 
           {etapa === 6 && (
-            <form action="#" onSubmit={fazerDenuncia}>
-              <div className="input-container">
-                <textarea
-                  rows={4} cols={50}
-                  className="input-field"
-                  minLength={20}
-                  maxLength={255}
-                  placeholder="Descreva o ocorrido"
-                  value={descricao}
-                  onChange={(e) => setDescricao(e.target.value)}
-                  required
-                />
-                <div className="button-container">
-                  <button className="action-button" type='submit'><LuSend size={20} color='white' /></button>
-                </div>
-              </div>
-            </form>
-          )}
-
-          {etapa === 7 && (
-            <>
-              <ChatbotInput type={"text"}
-                placeholder={"Informe o bairro"}
-                setValor={setBairro}
-                avancarEtapa={fazerDenuncia}
-              />
-            </>
-          )}
-
-          {etapa === 8 && (
-            <>
-              <ChatbotInput type={"text"}
-                placeholder={"Informe o nome da rua"}
-                setValor={setRua}
-                avancarEtapa={fazerDenuncia}
-              />
-            </>
+            <ChatbotInput type={"text"}
+              placeholder={"Informe o nome da rua"}
+              setValor={setRua}
+              avancarEtapa={fazerDenuncia}
+            />
           )}
 
           {/* Etapas de consulta de denúncia */}
