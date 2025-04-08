@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaUndo } from "react-icons/fa"; 
 import '../styles/Filtro.css'
 
 
@@ -12,6 +13,15 @@ const Filtro = ({ filtrosConfig = [], onFiltroChange }) => {
     setFiltros(novosFiltros);
     if (onFiltroChange) onFiltroChange(novosFiltros);
   };
+
+  const limparFiltros = () => {
+    const filtrosZerados = Object.fromEntries(
+      filtrosConfig.map(({ nome }) => [nome, ""])
+    );
+    setFiltros(filtrosZerados);
+    if (onFiltroChange) onFiltroChange(filtrosZerados);
+  };
+  
 
   return (
     <div className="filtro-vertical">
@@ -36,6 +46,11 @@ const Filtro = ({ filtrosConfig = [], onFiltroChange }) => {
       ) : (
         <p>Nenhum filtro disponível</p>
       )}
+
+<button className="limpar-btn" onClick={limparFiltros}>
+  <FaUndo size={10} /> Limpar Filtros
+</button>
+
     </div>
   );
 };

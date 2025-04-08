@@ -230,6 +230,26 @@
     background: #ccc;
     cursor: not-allowed;
   }
+
+  .lixeira-btn-acom {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #c44b4b; 
+    font-size: 1rem;
+    padding: 0.2rem;
+    margin-left: auto;
+    margin-top: 0.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+  }
+  
+  .lixeira-btn-acom:hover {
+    color: #a12f2f; 
+  }
+  
     
   @media (max-width: 1024px) {
     .acompanhamento-container {
