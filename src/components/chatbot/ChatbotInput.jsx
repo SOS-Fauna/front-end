@@ -1,6 +1,6 @@
 import { LuSend } from "react-icons/lu";
 
-function ChatbotInput({ type, placeholder, setValor, avancarEtapa, campoObrigatorio=true, tamanhoMin=1 }) {
+function ChatbotInput({ type, placeholder, setValor, avancarEtapa, campoObrigatorio=true, tamanhoMin=2 }) {
     return (
         <form className="form-pai" onSubmit={avancarEtapa}>
             <div className="input-container">

@@ -49,6 +49,10 @@
     min-height: 5rem;
 }
 
+.icons:hover{
+    cursor: pointer;
+}
+
 .input {
     width: 85%;
     max-width: 85%;
