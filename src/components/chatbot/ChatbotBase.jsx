@@ -61,7 +61,7 @@ export function ChatbotBase({ reset }) {
         break;
 
       case 5:
-        setMensagens([...mensagens, `Você: ${foto}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente:"]);
+        setMensagens([...mensagens, `Você: ${foto.split("fakepath\\")[1]}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente:"]);
         setEtapa(6);
         break
 

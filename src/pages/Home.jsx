@@ -1,20 +1,32 @@
 import Slider from "../components/Slider";
 import "../styles/home.css"
 import banner from "../assets/bannerFoto.png"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Chatbot from "../components/chatbot/Chatbot";
 
 export default function Home() {
+
+  const [chatbotAberto, setChatbotAberto] = useState(false);
+
   useEffect(() => {
     document.body.style.overflowX = "hidden";
     return () => {
       document.body.style.overflowX = "auto"; // Restaura o padrão ao desmontar
     };
   }, []);
+
   return (<>
+
+    {chatbotAberto &&
+      <div className="chatMenu">
+        <Chatbot abrirChatbot={setChatbotAberto} />
+      </div>
+    }
+
     <Slider />
     <section id="denuncia-container">
       <p className="estilo-paragrafo">Faça sua parte e ajude a combater os maus-tratos agora mesmo</p>
-      <a href="#" className="denuncia-btn">FAÇA SUA DENÚNCIA AQUI!</a>
+      <a className="denuncia-btn" onClick={() => setChatbotAberto(true)}>FAÇA SUA DENÚNCIA AQUI!</a>
 
     </section>
     <section id="banner">
