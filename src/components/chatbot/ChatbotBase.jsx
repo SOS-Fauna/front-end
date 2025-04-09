@@ -7,6 +7,7 @@ export function ChatbotBase({ reset }) {
   const [animal, setAnimal] = useState("");
   const [agressor, setAgressor] = useState("");
   const [data, setData] = useState("");
+  const dataDeHoje = new Date().toISOString().split('T')[0];
   const [descricao, setDescricao] = useState("");
   const [foto, setFoto] = useState("");
   const [bairro, setBairro] = useState("");
@@ -81,9 +82,9 @@ export function ChatbotBase({ reset }) {
 
       // aguardando API para gerar o número de protocolo
     }
-
   };
 
+  //Consulta de denúncias
   const consultarDenuncia = () => {
     switch (etapa) {
       case 0:
@@ -129,8 +130,9 @@ export function ChatbotBase({ reset }) {
   }
 
   return (
-    <div className="chat-container" >
 
+    <div className="chat-container" >
+    
       <div className="mensagem-container" ref={elementoRef}  >
         {mensagens.map((mensagem) => (
 
@@ -177,6 +179,7 @@ export function ChatbotBase({ reset }) {
               placeholder={"Informe a data do ocorrido"}
               setValor={setData}
               avancarEtapa={fazerDenuncia}
+              dataMax= {dataDeHoje}
             />
           )}
 
