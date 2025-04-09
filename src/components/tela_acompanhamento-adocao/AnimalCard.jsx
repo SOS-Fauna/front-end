@@ -1,26 +1,19 @@
 import { useState } from "react";
-import { FaTimes, FaMars, FaVenus, FaBirthdayCake, FaEdit, FaSyringe } from "react-icons/fa";
+import {FaTimes,FaMars,FaVenus,FaBirthdayCake,FaEdit,FaSyringe,} from "react-icons/fa";
+import ModalCard from '../ModalCard.jsx'
 import "../../styles/AnimalCard.css";
 
 const AnimalCard = ({
-  id,
-  imgSrc,
-  nome,
-  localizacao,
-  sexo,
-  vacinacao,
-  idade,
-  atualizarAnimal = () => {},
-  onDelete = () => {},
-  onChange = () => {}
+  id,imgSrc, nome,localizacao,sexo,vacinacao,idade,categoria,
+  atualizarAnimal = () => { },
+  onDelete = () => { },
+  onChange = () => { },
+  modoVisualizacao = false,
 }) => {
   const [dados, setDados] = useState({
-    nome,
-    localizacao,
-    sexo,
+    nome,localizacao,sexo, idade,imgSrc,
     vacinacao: vacinacao || "",
-    idade,
-    imgSrc,
+    categoria: categoria || "",
     status: "Em Adoção",
     tempoSistema: "0 dias",
   });
@@ -28,6 +21,7 @@ const AnimalCard = ({
   const [editando, setEditando] = useState(false);
   const [imagem, setImagem] = useState(imgSrc);
   const [alterado, setAlterado] = useState(false);
+  const [mostrarModal, setMostrarModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -48,7 +42,6 @@ const AnimalCard = ({
     }
   };
 
-
   const handleSave = () => {
     atualizarAnimal(id, dados);
     setEditando(false);
@@ -64,9 +57,11 @@ const AnimalCard = ({
 
   return (
     <div className="animal-card">
-      <button className="delete-button" onClick={onDelete}>
-        <FaTimes />
-      </button>
+      {!modoVisualizacao && (
+        <button className="delete-button" onClick={onDelete}>
+          <FaTimes />
+        </button>
+      )}
 
       <input
         type="file"
@@ -75,55 +70,92 @@ const AnimalCard = ({
         id={`file-input-${id}`}
         onChange={handleImageChange}
       />
-  <img
-  src={imagem} 
-  alt={dados.nome}
-  className="animal-img"
-  onClick={() => document.getElementById(`file-input-${id}`).click()}
-  title="Clique para trocar a foto"
-/>
+      <img
+        src={imagem}
+        alt={dados.nome}
+        className="animal-img"
+        onClick={
+          !modoVisualizacao && editando
+            ? () => document.getElementById(`file-input-${id}`).click()
+            : undefined
+        }
+        title={modoVisualizacao || !editando ? "" : "Clique para trocar a foto"}
+      />
 
-
+      {/* nome */}
       <div className="card-info">
-        {editando ? (
-          <input name="nome" value={dados.nome} onChange={handleChange} autoFocus />
+        {editando && !modoVisualizacao ? (
+          <input
+            name="nome"
+            value={dados.nome}
+            onChange={handleChange}
+            placeholder="Nome"
+          />
         ) : (
           <span className="animal-nome">{dados.nome}</span>
         )}
       </div>
 
+      {/* categoria + localização */}
       <div className="localizacao-info">
         {editando ? (
-          <input name="localizacao" value={dados.localizacao } onChange={handleChange} />
+          <input
+            name="categoria"
+            value={dados.categoria || ""}
+            onChange={handleChange}
+            placeholder="Categoria ex: Gato"
+          />
         ) : (
-          <p className="animal-localizacao">{dados.localizacao || "Localização?"}</p>
+          <p className="animal-categoria">{dados.categoria || "Categoria?"}</p>
+        )}
+
+        {editando ? (
+          <input
+            name="localizacao"
+            value={dados.localizacao}
+            onChange={handleChange}
+            placeholder="Localização ex: Recife"
+          />
+        ) : (
+          <p className="animal-localizacao">{dados.localizacao || ""}</p>
         )}
       </div>
 
       <div className="icones-container">
-      <div
-  className="icone-info"
-  onClick={toggleSexo}
-  title="Clique para alternar entre Macho e Fêmea"
->
-  {dados.sexo === "Macho" ? <FaMars color="blue" /> : <FaVenus color="pink" />}
-  <span>{dados.sexo || "Sexo?"}</span>
-</div>
+        {/* sexo */}
+        <div
+          className="icone-info"
+          onClick={editando && !modoVisualizacao ? toggleSexo : undefined}
+          title={editando ? "Clique para alternar entre Macho e Fêmea" : ""}
+        >
+          {dados.sexo === "Macho" ? (
+            <FaMars color="blue" />
+          ) : (
+            <FaVenus color="pink" />
+          )}
+          <span>{dados.sexo || "Sexo?"}</span>
+        </div>
 
-
-<div className="icone-info" title="Idade aproximada do animal">
-  <FaBirthdayCake color="brown" />
-  {editando ? (
-    <input name="idade" value={dados.idade} placeholder="Idade aproximada"
-    onChange={handleChange} />
-  ) : (
-    <span>{dados.idade || "Idade?"}</span>
-  )}
-</div>
-
-
+        {/* idade */}
+        <div className="icone-info" title="Idade aproximada do animal">
+          <FaBirthdayCake color="brown" />
+          {editando ? (
+            <input
+              name="idade"
+              value={dados.idade}
+              placeholder="Idade aproximada"
+              onChange={handleChange}
+            />
+          ) : (
+            <span>{dados.idade || "Idade?"}</span>
+          )}
+        </div>
+        {/* vacinacao */}
         <div className="icone-info">
-          <FaSyringe color="orange" title="Vacinação: Informe quais vacinas o animal recebeu." />
+          <FaSyringe
+            color="orange"
+            title="Vacinação: Informe quais vacinas o animal recebeu."
+          />
           {editando ? (
             <input
               name="vacinacao"
@@ -132,22 +164,55 @@ const AnimalCard = ({
               onChange={handleChange}
             />
           ) : (
-            <span title="Vacinas recebidas">{dados.vacinacao || "Vacinas?"}</span>
+            <span title="Vacinas recebidas">
+              {dados.vacinacao && dados.vacinacao.trim() !== ""
+                ? "✅ Sim"
+                : "Vacinas?"}
+            </span>
           )}
         </div>
       </div>
 
-      {!editando ? (
-        <button className="edit-button" onClick={() => setEditando(true)}>
-          <FaEdit /> Editar
-        </button>
-      ) : (
-        alterado && (
-          <button className="save-button" onClick={handleSave}>
-            Salvar
+      {/* botões editar/salvar */}
+      {!modoVisualizacao &&
+        (!editando ? (
+          <button className="edit-button" onClick={() => setEditando(true)}>
+            <FaEdit /> Editar
           </button>
-        )
+        ) : (
+          alterado && (
+            <button className="save-button" onClick={handleSave}>
+              Salvar
+            </button>
+          )
+        ))}
+
+
+
+      {modoVisualizacao && (
+        <button
+          className="btn-adotar"
+          onClick={() => setMostrarModal(true)}
+        >
+          Quero Adotar
+        </button>
       )}
+
+      {/* modalCard de adoção */}
+      {mostrarModal && (
+        <ModalCard
+          item={{
+            nome: dados.nome,
+            imgSrc: dados.imgSrc,
+            localizacao: dados.localizacao,
+            contato: "contato@exemplo.com",
+          }}
+          botaoTexto="Confirmar Adoção"
+          fecharModal={() => setMostrarModal(false)}
+        />
+      )}
+
+
     </div>
   );
 };

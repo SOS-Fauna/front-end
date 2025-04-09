@@ -44,6 +44,21 @@
     border-color: #FD7C17;
     box-shadow: 0 0 0 2px rgba(255, 177, 153, 0.25);
   }
+  .limpar-btn {
+    background: none;
+    border: none;
+    color: orange;
+    font-size: 0.9rem;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: 0.2s ease;
+  }
+  
+  .limpar-btn:hover {
+    text-decoration: none;
+    color: rgb(219, 121, 22);
+  }
+  
   
   @media (max-width: 768px) {
     .filtro-vertical {
