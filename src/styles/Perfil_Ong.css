@@ -468,3 +468,17 @@ section {
       max-width: 100%;
   }
 }
+.perfil-salvar {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.btn-salvar {
+  background-color: #FFA500; /* exemplo de laranja */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
