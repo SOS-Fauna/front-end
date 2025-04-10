@@ -1,13 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../../styles/Chatbot.css'
-import ChatbotInput from '../ChatbotInput';
+import ChatbotInput from './ChatbotInput';
 
 export function ChatbotBase({ reset }) {
   const [etapa, setEtapa] = useState(0);
   const [animal, setAnimal] = useState("");
   const [agressor, setAgressor] = useState("");
   const [data, setData] = useState("");
+  const dataDeHoje = new Date().toISOString().split('T')[0];
   const [descricao, setDescricao] = useState("");
+  const [foto, setFoto] = useState("");
   const [bairro, setBairro] = useState("");
   const [rua, setRua] = useState("");
   const [finalizado, setFinalizado] = useState(false);
@@ -34,38 +36,43 @@ export function ChatbotBase({ reset }) {
   const fazerDenuncia = () => {
     switch (etapa) {
       case 0:
-        setMensagens([...mensagens, "Você: Fazer denúncia", "Bot: Informe qual animal está em condições de maus tratos."]);
+        setMensagens([...mensagens, "Você: Fazer denúncia", "Bot: Informe qual animal está em condições de maus tratos:"]);
         setEtapa(1);
         break;
 
       case 1:
-        setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver)."]);
+        setMensagens([...mensagens, `Você: ${animal}`, "Bot: Agora, me fale do agressor (se houver):"]);
         setEtapa(2);
         break;
 
       case 2:
-        setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Informe a data do ocorrido."]);
+        setMensagens([...mensagens, `Você: ${agressor ? agressor : "Não informado"}`, "Bot: Informe a data do ocorrido:"]);
         setEtapa(3);
         break;
 
       case 3:
         const dataformatada = data.split("-");
-        setMensagens([...mensagens, `Você: ${dataformatada[2] + "/" + dataformatada[1] + "/" + dataformatada[0]}`, "Bot: Agora, descreva o ocorrido (máximo de 255 caracteres)."]);
+        setMensagens([...mensagens, `Você: ${dataformatada[2] + "/" + dataformatada[1] + "/" + dataformatada[0]}`, "Bot: Agora, descreva o ocorrido:"]);
         setEtapa(4);
         break;
 
       case 4:
-        setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente."]);
+        setMensagens([...mensagens, `Você: ${descricao}`, "Bot: Agora, anexe uma foto do ocorrido:"]);
         setEtapa(5);
         break;
 
       case 5:
-        setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente."]);
+        setMensagens([...mensagens, `Você: ${foto.split("fakepath\\")[1]}`, "Bot: Agora, me diga o bairro onde ocorreu o incidente:"]);
         setEtapa(6);
-        break;
+        break
 
       case 6:
-        setMensagens([...mensagens, `Você: ${rua}`, "Bot: Muito bem, processo finalizado."]);
+        setMensagens([...mensagens, `Você: ${bairro}`, "Bot: Agora, me diga a rua onde ocorreu o incidente:"]);
+        setEtapa(7);
+        break;
+
+      case 7:
+        setMensagens([...mensagens, `Você: ${rua}`, "Bot: Processo finalizado! As informações serão analisadas e você poderá acompanhar pelo número de protocolo:"]);
         setFinalizado(true);
         break;
 
@@ -75,9 +82,9 @@ export function ChatbotBase({ reset }) {
 
       // aguardando API para gerar o número de protocolo
     }
-
   };
 
+  //Consulta de denúncias
   const consultarDenuncia = () => {
     switch (etapa) {
       case 0:
@@ -123,8 +130,9 @@ export function ChatbotBase({ reset }) {
   }
 
   return (
-    <div className="chat-container" >
 
+    <div className="chat-container" >
+    
       <div className="mensagem-container" ref={elementoRef}  >
         {mensagens.map((mensagem) => (
 
@@ -132,7 +140,7 @@ export function ChatbotBase({ reset }) {
             <div className={mensagem.includes("Bot:") ? "mensagemBot" : "mensagemUser"}>
 
               {/* verifica o texto para pular linha */}
-              <p className='msg'>{mensagem.includes("\n") ? quebrarLinha(mensagem) : mensagem.replace("Bot: ", "").replace("Você: ", "")}
+              <p className='msg'>{mensagem.includes("\n") ? quebrarLinha(mensagem.replace("Bot: ", "")) : mensagem.replace("Bot: ", "").replace("Você: ", "")}
               </p>
             </div>
           </div>
@@ -171,12 +179,13 @@ export function ChatbotBase({ reset }) {
               placeholder={"Informe a data do ocorrido"}
               setValor={setData}
               avancarEtapa={fazerDenuncia}
+              dataMax= {dataDeHoje}
             />
           )}
 
           {etapa === 4 && (
             <ChatbotInput type={"text"}
-              placeholder={"Informe o ocorrido"}
+              placeholder={"Informe o ocorrido (máximo de 255 caracteres)"}
               setValor={setDescricao}
               avancarEtapa={fazerDenuncia}
               tamanhoMin={20}
@@ -184,6 +193,14 @@ export function ChatbotBase({ reset }) {
           )}
 
           {etapa === 5 && (
+            <ChatbotInput type={"file"}
+              placeholder={"Aenxe uma foto do ocorrido"}
+              setValor={setFoto}
+              avancarEtapa={fazerDenuncia}
+            />
+          )}
+
+          {etapa === 6 && (
             <ChatbotInput type={"text"}
               placeholder={"Informe o bairro"}
               setValor={setBairro}
@@ -191,7 +208,7 @@ export function ChatbotBase({ reset }) {
             />
           )}
 
-          {etapa === 6 && (
+          {etapa === 7 && (
             <ChatbotInput type={"text"}
               placeholder={"Informe o nome da rua"}
               setValor={setRua}

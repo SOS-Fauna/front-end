@@ -6,7 +6,6 @@
   font-style: normal;
 }
 
-
 #denuncia-container {
   display: flex;
   align-items: center;
@@ -18,9 +17,7 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   border: 2px solid #ffa500;
-  
   transform: translateY(-50%);
-  
 }
 
 /*Adiciono estilo ao paragrafo */
@@ -48,8 +45,8 @@
 
 .denuncia-btn:hover {
   background: #e07b00;
+  cursor: pointer;
 }
-
 
 /*Estilização do banner */
 /* Adiciono estilo para a section que engloba todos os elementos */

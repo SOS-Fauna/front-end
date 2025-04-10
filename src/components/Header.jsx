@@ -5,7 +5,7 @@ import icon_perfil from "../assets/iconperfil.svg";
 import { FaUserCircle } from "react-icons/fa";
 import AcessoPerfil from "../pages/AcessoPerfil"
 import "../styles/header.css";
-import Chatbot from "./Chatbot";
+import Chatbot from "./chatbot/Chatbot";
 
 
 export default function Header() {
@@ -13,7 +13,6 @@ export default function Header() {
   const [usuarioLogado, setUsuarioLogado] = useState(localStorage.getItem("usuarioTipo"));
   const [menuAberto, setMenuAberto] = useState(false);
   const [openMenuHamb, setOpenMenuHamb] = useState(false);
-
   const [chatbotAberto, setChatbotAberto] = useState(false);
 
   const navigate = useNavigate();
@@ -27,7 +26,7 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem("usuarioTipo");
     setUsuarioLogado(null);
-    navigate("/"); 
+    navigate("/");
   };
 
   const resetMenu = () => {
@@ -70,7 +69,7 @@ export default function Header() {
               <Link to="/QuemSomos" >Quem Somos</Link>
             </li>
             <li className="nav-item">
-              <Link to={usuarioLogado === "ONG" ? "/AcompanhamentoDeAdocao" : "/Adocao" }>Adoção</Link>
+              <Link to={usuarioLogado === "ONG" ? "/AcompanhamentoDeAdocao" : "/Adocao"}>Adoção</Link>
             </li>
             <li className="nav-item">
               <Link to="/Servico-Veterinarios" >Atendimento Veterinário</Link>
@@ -105,9 +104,9 @@ export default function Header() {
 
       {modalAberto && <AcessoPerfil fecharModal={() => setModalAberto(false)} setUsuarioLogado={setUsuarioLogado} />}
 
-       {chatbotAberto &&
+      {chatbotAberto &&
         <div className="chatMenu">
-          <Chatbot abrirChatbot={setChatbotAberto}/>
+          <Chatbot abrirChatbot={setChatbotAberto} />
         </div>
       }
     </>
