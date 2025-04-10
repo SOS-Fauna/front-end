@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { FaTimes } from "react-icons/fa"; // Importando o ícone FaTimes
 
 const ModalConfirmacao = ({ fecharModal, tipoUsuario }) => {
   const [codigo, setCodigo] = useState("");
@@ -15,30 +16,20 @@ const ModalConfirmacao = ({ fecharModal, tipoUsuario }) => {
       return;
     }
 
-        // 🚀 Quando o back-end estiver pronto, essa parte será substituída pela requisição.
-    // fetch("/api/validar-codigo", { method: "POST", body: JSON.stringify({ codigo }) })
-    //   .then(res => res.json())
-    //   .then(data => {
-    //     if (data.sucesso) acessarAreaRestrita();
-    //     else alert("Código inválido.");
-    //   });
-
-
-
-    // 🚀 Simulação de validação do código
-    setTimeout(() => {
-      const rotaDestino = tipoUsuario === "ONG" ? "/perfil-ong" : "/perfil-usuario";
-      navigate(rotaDestino); // Redireciona para a rota correta
-      fecharModal();
-    }, );
+    // // 🚀 Simulação de validação do código
+    // setTimeout(() => {
+    //   const rotaDestino = tipoUsuario === "ONG" ? "/perfil-ong" : "/perfil-usuario";
+    //   navigate(rotaDestino); // Redireciona para a rota correta
+    //   fecharModal();
+    // }, 1000); // Adicionado um tempo de espera simulado
   };
-
-  
 
   return (
     <div className="modal-overlay" onClick={fecharModal}>
       <div className="modal-container" onClick={(e) => e.stopPropagation()}>
-        <button className="modal-close" onClick={fecharModal}>✖</button>
+        <button className="modal-close" onClick={fecharModal} aria-label="Fechar modal">
+          <FaTimes size={24} />
+        </button>
         <h2 className="confirma">Confirmação de E-mail</h2>
         <p className="confirmar-email">Enviamos um código de validação para o e-mail cadastrado.</p>
         <div className="inputs-container">

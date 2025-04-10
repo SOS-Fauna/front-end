@@ -2,12 +2,15 @@ import React, { useReducer, useState } from "react";
 import ModalCadastroONG from "../components/tela_de_cadastro/ModalCadastroONG";
 import ModalCadastroDenunciante from "../components/tela_de_cadastro/ModalCadastroDenunciante";
 import ModalConfirmacao from "../components/tela_de_cadastro/ModalConfirmacao";
+import ModalRedefinirSenha from "../components/tela_de_cadastro/ModalRedefinirSenha";
 import googleimg from '../assets/google-img.png';
-import { IoArrowBack } from "react-icons/io5";
+import { IoArrowBack } from "react-icons/io5"; 
+import { FaTimes } from "react-icons/fa"; 
 import "../styles/AcessoPerfil.css";
 
 const initialState = { etapa: "selecionarTipo", tipoUsuario: null };
 
+// Função do reducer
 const reducer = (state, action) => {
   switch (action.type) {
     case "SET_TIPO_USUARIO":
@@ -23,6 +26,7 @@ const reducer = (state, action) => {
   }
 };
 
+// Componente Botão do Usuário
 const BotaoUsuario = ({ selecionarTipo }) => (
   <div className="botoes-acesso">
     <button onClick={() => selecionarTipo("ONG")} aria-label="Selecionar ONG">ONG</button>
@@ -30,23 +34,24 @@ const BotaoUsuario = ({ selecionarTipo }) => (
   </div>
 );
 
+// Componente Formulário de Login
 const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecionado }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
 
   const handleLogin = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para e-mail válido
-  
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
     if (!email || !senha) {
       setErro("Preenchimento errado.");
       return;
     }
-  
+
     if (!emailRegex.test(email)) {
       setErro("Digite um e-mail válido.");
       return;
     }
-  
+
     const tipoUsuario = tipoUsuarioSelecionado || (email.includes("ong") ? "ONG" : "Denunciante");
     localStorage.setItem("usuarioTipo", tipoUsuario);
     setUsuarioLogado(tipoUsuario);
@@ -56,35 +61,54 @@ const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecion
   return (
     <>
       <div className="inputs-container">
-        <input type="email" placeholder="E-mail" value={email} onChange={(e) => setEmail(e.target.value)} aria-label="E-mail" />
-        <input type="password" placeholder="Senha" value={senha} onChange={(e) => setSenha(e.target.value)} aria-label="Senha" />
+        <input
+          type="email"
+          placeholder="E-mail"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          aria-label="E-mail"
+        />
+        <input
+          type="password"
+          placeholder="Senha"
+          value={senha}
+          onChange={(e) => setSenha(e.target.value)}
+          aria-label="Senha"
+        />
       </div>
       <button className="btn-entrar" onClick={handleLogin}>Entrar</button>
     </>
   );
 };
 
+// Componente Principal
 const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [erro, setErro] = useState("");
+  const [mostrarRedefinirSenha, setMostrarRedefinirSenha] = useState(false);
 
   const handleCadastroFinalizado = (tipoUsuario) => {
     localStorage.setItem("usuarioTipo", tipoUsuario);
     setUsuarioLogado(tipoUsuario);
     dispatch({ type: "ABRIR_CONFIRMACAO" });
   };
-  
+
   return (
     <div className="modal-overlay">
       <div className="modal-container">
-        <button className="modal-close" onClick={fecharModal} aria-label="Fechar modal">✖</button>
-        
+        {/* Substituindo o botão ✖ por FaTimes */}
+        <button className="modal-close" onClick={fecharModal} aria-label="Fechar modal">
+          <FaTimes size={24} />
+        </button>
+
+        {/* Botão Voltar */}
         {state.etapa !== "selecionarTipo" && (
           <button className="btn-voltar" onClick={() => dispatch({ type: "VOLTAR" })} aria-label="Voltar">
-            <IoArrowBack size={24}/>
+            <IoArrowBack size={24} />
           </button>
         )}
 
+        {/* Etapas */}
         {state.etapa === "selecionarTipo" && (
           <>
             <h2>Acessar Perfil</h2>
@@ -93,7 +117,7 @@ const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
           </>
         )}
 
-        {state.etapa === "login" && (
+        {state.etapa === "login" && !mostrarRedefinirSenha && (
           <>
             <h2>Acessar Perfil</h2>
             <p className="subtitulo">Você está acessando como <strong>{state.tipoUsuario}</strong></p>
@@ -107,37 +131,52 @@ const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
             <p className="ou-texto">ou</p>
             <p className="acesso-email-texto">Acesse seu perfil com email e senha</p>
 
-            <FormLogin 
-              setErro={setErro} 
-              fecharModal={fecharModal} 
-              setUsuarioLogado={setUsuarioLogado} 
-              tipoUsuarioSelecionado={state.tipoUsuario} 
+            <FormLogin
+              setErro={setErro}
+              fecharModal={fecharModal}
+              setUsuarioLogado={setUsuarioLogado}
+              tipoUsuarioSelecionado={state.tipoUsuario}
             />
 
             <div className="links-acesso">
-              <a href="#">Redefinir Senha</a>
+              <a href="#" onClick={() => setMostrarRedefinirSenha(true)}>Redefinir Senha</a>
               <a href="#" onClick={() => dispatch({ type: "ABRIR_CADASTRO" })}>Criar Conta</a>
             </div>
           </>
         )}
 
+        {/* Modal Redefinir Senha */}
+        {mostrarRedefinirSenha && (
+          <ModalRedefinirSenha
+            fecharModal={() => setMostrarRedefinirSenha(false)}
+            tipoUsuario={state.tipoUsuario || "Denunciante"}
+            botaoVoltar={
+              <button className="btn-voltar" onClick={() => setMostrarRedefinirSenha(false)}>
+                <IoArrowBack size={24} />
+              </button>
+            }
+          />
+        )}
+
         {state.etapa === "cadastroONG" && (
-          <ModalCadastroONG 
-            abrirConfirmacao={() => dispatch({ type: "ABRIR_CONFIRMACAO" })} 
-            fecharModal={fecharModal} 
-            onCadastroFinalizado={() => handleCadastroFinalizado("ONG")} 
+          <ModalCadastroONG
+            abrirConfirmacao={() => dispatch({ type: "ABRIR_CONFIRMACAO" })}
+            fecharModal={fecharModal}
+            onCadastroFinalizado={() => handleCadastroFinalizado("ONG")}
           />
         )}
 
         {state.etapa === "cadastroDenunciante" && (
-          <ModalCadastroDenunciante 
-            abrirConfirmacao={() => dispatch({ type: "ABRIR_CONFIRMACAO" })} 
-            fecharModal={fecharModal} 
-            onCadastroFinalizado={() => handleCadastroFinalizado("Denunciante")} 
+          <ModalCadastroDenunciante
+            abrirConfirmacao={() => dispatch({ type: "ABRIR_CONFIRMACAO" })}
+            fecharModal={fecharModal}
+            onCadastroFinalizado={() => handleCadastroFinalizado("Denunciante")}
           />
         )}
 
-        {state.etapa === "confirmacao" && <ModalConfirmacao fecharModal={fecharModal} tipoUsuario={state.tipoUsuario} />}
+        {state.etapa === "confirmacao" && (
+          <ModalConfirmacao fecharModal={fecharModal} tipoUsuario={state.tipoUsuario} />
+        )}
       </div>
     </div>
   );

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { FaTimes } from "react-icons/fa"; // Importando o ícone FaTimes
 
 const ModalCadastroDenunciante = ({ fecharModal, abrirConfirmacao, onCadastroFinalizado }) => {
   const [formData, setFormData] = useState({
@@ -39,44 +40,87 @@ const ModalCadastroDenunciante = ({ fecharModal, abrirConfirmacao, onCadastroFin
   const finalizarCadastro = () => {
     if (validarCampos()) {
       abrirConfirmacao();
-      onCadastroFinalizado("Denunciante"); 
+      onCadastroFinalizado("Denunciante");
     }
   };
-
-  
 
   return (
     <div className="modal-overlay">
       <div className="modal-container">
-        <button className="modal-close" onClick={fecharModal}>✖</button>
+        {/* Substituindo o botão "X" por FaTimes */}
+        <button className="modal-close" onClick={fecharModal} aria-label="Fechar modal">
+          <FaTimes size={24} />
+        </button>
         <h2>Cadastro Denunciante</h2>
         <div className="inputs-container">
           <div>
-            <input type="text" name="nome" placeholder="Nome Completo" onChange={handleChange} value={formData.nome} />
+            <input 
+              type="text" 
+              name="nome" 
+              placeholder="Nome Completo" 
+              onChange={handleChange} 
+              value={formData.nome} 
+            />
             {errors.nome && <p className="error-text">{errors.nome}</p>}
           </div>
           <div>
-            <input type="text" name="cpf" placeholder="CPF" onChange={handleChange} value={formData.cpf} />
+            <input 
+              type="text" 
+              name="cpf" 
+              placeholder="CPF" 
+              onChange={handleChange} 
+              value={formData.cpf} 
+            />
             {errors.cpf && <p className="error-text">{errors.cpf}</p>}
           </div>
           <div>
-            <input type="email" name="email" placeholder="E-mail" onChange={handleChange} value={formData.email} />
+            <input 
+              type="email" 
+              name="email" 
+              placeholder="E-mail" 
+              onChange={handleChange} 
+              value={formData.email} 
+            />
             {errors.email && <p className="error-text">{errors.email}</p>}
           </div>
           <div>
-            <input type="text" name="telefone" placeholder="Telefone" onChange={handleChange} value={formData.telefone} />
+            <input 
+              type="text" 
+              name="telefone" 
+              placeholder="Telefone" 
+              onChange={handleChange} 
+              value={formData.telefone} 
+            />
             {errors.telefone && <p className="error-text">{errors.telefone}</p>}
           </div>
           <div>
-            <input type="text" name="cidade" placeholder="Cidade" onChange={handleChange} value={formData.cidade} />
+            <input 
+              type="text" 
+              name="cidade" 
+              placeholder="Cidade" 
+              onChange={handleChange} 
+              value={formData.cidade} 
+            />
             {errors.cidade && <p className="error-text">{errors.cidade}</p>}
           </div>
           <div>
-            <input type="password" name="senha" placeholder="Senha" onChange={handleChange} value={formData.senha} />
+            <input 
+              type="password" 
+              name="senha" 
+              placeholder="Senha" 
+              onChange={handleChange} 
+              value={formData.senha} 
+            />
             {errors.senha && <p className="error-text">{errors.senha}</p>}
           </div>
           <div>
-            <input type="password" name="confirmarSenha" placeholder="Confirmar Senha" onChange={handleChange} value={formData.confirmarSenha} />
+            <input 
+              type="password" 
+              name="confirmarSenha" 
+              placeholder="Confirmar Senha" 
+              onChange={handleChange} 
+              value={formData.confirmarSenha} 
+            />
             {errors.confirmarSenha && <p className="error-text">{errors.confirmarSenha}</p>}
           </div>
         </div>

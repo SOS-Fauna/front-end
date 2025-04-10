@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { IoArrowBack } from "react-icons/io5"; 
+import { IoArrowBack } from "react-icons/io5"; // Ícone para voltar
+import { FaTimes } from "react-icons/fa"; // Ícone para fechar o modal
 
 const ModalCadastroONG = ({ fecharModal, abrirConfirmacao, onCadastroFinalizado }) => {
   const [etapa, setEtapa] = useState(1);
@@ -45,62 +46,114 @@ const ModalCadastroONG = ({ fecharModal, abrirConfirmacao, onCadastroFinalizado 
 
   const finalizarCadastro = () => {
     if (validarCamposEtapa2()) {
-      abrirConfirmacao(); 
-      onCadastroFinalizado("ONG"); 
+      abrirConfirmacao();
+      onCadastroFinalizado("ONG");
     }
   };
 
   return (
     <div className="modal-overlay">
       <div className="modal-container">
-        <button className="modal-close" onClick={fecharModal}>✖</button>
+        {/* Substituindo o ✖ por FaTimes */}
+        <button className="modal-close" onClick={fecharModal} aria-label="Fechar modal">
+          <FaTimes size={24} />
+        </button>
         <h2>Cadastro ONG</h2>
 
         {etapa === 1 ? (
           <div className="inputs-container">
-            <button className="btn-voltar" onClick={() => setEtapa(1)}>
-              <IoArrowBack size={24} /> 
-            </button>
             <div>
-              <input type="text" name="nomeEntidade" placeholder="Nome da Entidade" onChange={handleChange} value={formData.nomeEntidade} />
+              <input
+                type="text"
+                name="nomeEntidade"
+                placeholder="Nome da Entidade"
+                onChange={handleChange}
+                value={formData.nomeEntidade}
+              />
               {errors.nomeEntidade && <p className="error-text">{errors.nomeEntidade}</p>}
             </div>
             <div>
-              <input type="text" name="cnpj" placeholder="CNPJ" onChange={handleChange} value={formData.cnpj} />
+              <input
+                type="text"
+                name="cnpj"
+                placeholder="CNPJ"
+                onChange={handleChange}
+                value={formData.cnpj}
+              />
               {errors.cnpj && <p className="error-text">{errors.cnpj}</p>}
             </div>
             <div>
-              <input type="email" name="email" placeholder="E-mail" onChange={handleChange} value={formData.email} />
+              <input
+                type="email"
+                name="email"
+                placeholder="E-mail"
+                onChange={handleChange}
+                value={formData.email}
+              />
               {errors.email && <p className="error-text">{errors.email}</p>}
             </div>
             <div>
-              <input type="date" name="dataConstituicao" placeholder="Data de Constituição" onChange={handleChange} value={formData.dataConstituicao} />
+              <input
+                type="date"
+                name="dataConstituicao"
+                placeholder="Data de Constituição"
+                onChange={handleChange}
+                value={formData.dataConstituicao}
+              />
               {errors.dataConstituicao && <p className="error-text">{errors.dataConstituicao}</p>}
             </div>
-            <button className="btn-entrar" onClick={() => validarCamposEtapa1() && setEtapa(2)}>Próximo</button>
+            <button className="btn-entrar" onClick={() => validarCamposEtapa1() && setEtapa(2)}>
+              Próximo
+            </button>
           </div>
         ) : (
           <div className="inputs-container">
             <button className="btn-voltar" onClick={() => setEtapa(1)}>
-              <IoArrowBack size={24} /> 
+              <IoArrowBack size={24} /> Voltar
             </button>
             <div>
-              <input type="text" name="finalidade" placeholder="Finalidade Institucional" onChange={handleChange} value={formData.finalidade} />
+              <input
+                type="text"
+                name="finalidade"
+                placeholder="Finalidade Institucional"
+                onChange={handleChange}
+                value={formData.finalidade}
+              />
               {errors.finalidade && <p className="error-text">{errors.finalidade}</p>}
             </div>
             <div>
-              <input type="text" name="endereco" placeholder="Endereço" onChange={handleChange} value={formData.endereco} />
+              <input
+                type="text"
+                name="endereco"
+                placeholder="Endereço"
+                onChange={handleChange}
+                value={formData.endereco}
+              />
               {errors.endereco && <p className="error-text">{errors.endereco}</p>}
             </div>
             <div>
-              <input type="text" name="responsavel" placeholder="Nome do Responsável" onChange={handleChange} value={formData.responsavel} />
+              <input
+                type="text"
+                name="responsavel"
+                placeholder="Nome do Responsável"
+                onChange={handleChange}
+                value={formData.responsavel}
+              />
               {errors.responsavel && <p className="error-text">{errors.responsavel}</p>}
             </div>
             <div>
-              <input type="text" name="contato" placeholder="Contato (WhatsApp)" onChange={handleChange} value={formData.contato} />
+              <input
+                type="text"
+                name="contato"
+                placeholder="Contato (WhatsApp)"
+                onChange={handleChange}
+                value={formData.contato}
+              />
               {errors.contato && <p className="error-text">{errors.contato}</p>}
             </div>
-            <button className="btn-entrar" onClick={finalizarCadastro}>Finalizar</button>
+            <button className="btn-entrar" onClick={finalizarCadastro}>
+              Finalizar
+            </button>
           </div>
         )}
       </div>
