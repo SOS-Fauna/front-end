@@ -9,7 +9,7 @@
   .textQuemSomos h1 {
     color: #fD7C17;
     margin-bottom: 1vw;
-    font-size: clamp(28px, 3.5vw, 35px);
+    font-size: clamp(25px, 3vw, 30px);
     /* valor mínimo, "ideal", e máximo que o navegador se ajustará para ficar responsivo */
   }
 
@@ -32,13 +32,13 @@
     content: "";
     flex: 1;
     height: 0.15rem; /* Espessura da linha */
-    background-color: #fD7c17; /* Cor da linha */
+    background-color: #fD7c17;
     margin: 0 2.5rem; /* Espaço entre a linha e o texto */
   }
   
   .membros img {
-    width: 7vw;
-    height: 7vw;
+    width: 6vw;
+    height: 6vw;
     border-radius: 50%;
   }
   
@@ -67,7 +67,7 @@
   .textrodape {
     font-size: 1rem;
     text-align: center;
-    margin: 10vh 25vw;
+    margin: 10vh 28vw;
   }
   
   @media (max-width: 700px) {
