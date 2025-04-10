@@ -1,7 +1,7 @@
 import React from "react";
 import { FaHome, FaAt, FaEdit } from "react-icons/fa";
 import { IoCall } from "react-icons/io5";
-// import "../../styles/Dados.css"; // caminho do seu CSS
+import "../../styles/DadosOng.css"; // caminho do seu CSS
 
 const DadosOng = ({ dados, setDados, editando, setEditando }) => {
   const icones = [

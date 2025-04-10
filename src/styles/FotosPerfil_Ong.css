@@ -1,0 +1,37 @@
+.fotos-perfil {
+    text-align: center;
+    margin-bottom: 7rem;
+  }
+  
+  .fotos-perfil h1 {
+    font-size: 2rem;
+    color: #333;
+  }
+  
+  .fotos-perfil p {
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .fotos-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  
+  .foto-box {
+    width: 250px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .foto-box:not(:has(img)) {
+    border: 2px dashed #ccc;
+  }

@@ -1,6 +1,6 @@
 import React from "react";
 import { FaEdit } from "react-icons/fa";
-// import "../../styles/Sobre.css";
+import "../../styles/SobreOng.css";
 
 const SobreOng= ({
   nome,

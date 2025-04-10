@@ -1,6 +1,6 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
-// import "../../styles/FotosPerfil.css"; // ajuste conforme a estrutura da pasta
+import "../../styles/FotosPerfil_Ong.css"; // ajuste conforme a estrutura da pasta
 
 const FotosPerfil_Ong = ({ fotos, setFotos }) => {
   const handleImagem = (e, index) => {

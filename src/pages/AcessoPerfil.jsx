@@ -1,4 +1,5 @@
 import React, { useReducer, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import ModalCadastroONG from "../components/tela_de_cadastro/ModalCadastroONG";
 import ModalCadastroDenunciante from "../components/tela_de_cadastro/ModalCadastroDenunciante";
 import ModalConfirmacao from "../components/tela_de_cadastro/ModalConfirmacao";
@@ -33,6 +34,7 @@ const BotaoUsuario = ({ selecionarTipo }) => (
 const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecionado }) => {
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
+  const navigate = useNavigate(); 
 
   const handleLogin = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -51,8 +53,13 @@ const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecion
     localStorage.setItem("usuarioTipo", tipoUsuario);
     setUsuarioLogado(tipoUsuario);
     fecharModal();
-  };
-
+  
+  if (tipoUsuarioSelecionado === "ONG") {
+    navigate("/perfil-ong");
+  } else {
+    navigate("/perfil-usuario");
+  }
+  }
   return (
     <>
       <div className="inputs-container">
@@ -67,6 +74,8 @@ const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecion
 const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [erro, setErro] = useState("");
+  const navigate = useNavigate(); 
+
 
   const handleCadastroFinalizado = (tipoUsuario) => {
     localStorage.setItem("usuarioTipo", tipoUsuario);
@@ -112,6 +121,8 @@ const AcessoPerfil = ({ fecharModal, setUsuarioLogado }) => {
               fecharModal={fecharModal} 
               setUsuarioLogado={setUsuarioLogado} 
               tipoUsuarioSelecionado={state.tipoUsuario} 
+              navigate={navigate} 
+
             />
 
             <div className="links-acesso">
