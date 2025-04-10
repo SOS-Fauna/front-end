@@ -19,7 +19,24 @@ html, body {
   padding: 6rem 1.5rem;
   padding-top: 12vh;
 }
+.mensagem-flutuante {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #4CAF50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  z-index: 1000;
+  animation: fadeInOut 3s ease-in-out;
+}
 
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translateY(20px); }
+  10% { opacity: 1; transform: translateY(0); }
+  90% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(20px); }
+}
 .sobre {
   display: flex;
   flex-direction: column;

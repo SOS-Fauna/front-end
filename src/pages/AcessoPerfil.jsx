@@ -35,7 +35,7 @@ const FormLogin = ({ setErro, fecharModal, setUsuarioLogado, tipoUsuarioSelecion
   const [senha, setSenha] = useState("");
 
   const handleLogin = () => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Regex para e-mail válido
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
   
     if (!email || !senha) {
       setErro("Preenchimento errado.");

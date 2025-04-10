@@ -3,32 +3,27 @@ import "../styles/Ong.css";
 import Paginacao from "../components/Paginacao";
 import Card from "../components/Card";
 import Filtro from "../components/Filtro";
-import ModalCard from "../components/ModalCard"; // <-- importar
+import ModalCard from "../components/ModalCard"; 
 
 const ONG = () => {
   const [filtros, setFiltros] = useState({});
   const [paginaAtual, setPaginaAtual] = useState(1);
-  const [ongSelecionada, setOngSelecionada] = useState(null); // <-- controla o modal
-  const dadosOngSalvos = JSON.parse(localStorage.getItem("perfilOng"));
+  const [ongSelecionada, setOngSelecionada] = useState(null); 
+  const ongsPublicadas = JSON.parse(localStorage.getItem("ongsPublicadas")) || [];
 
-  const ongs = dadosOngSalvos
-  ? [
-      {
-        id: 1,
-        nome: dadosOngSalvos.nome,
-        localizacao: dadosOngSalvos.localizacao,
-        contato: dadosOngSalvos.telefone,
-        descricao: dadosOngSalvos.descricao,
-        imgSrc: dadosOngSalvos.imagem,
-        fotos: dadosOngSalvos.fotos,
-        temCaes: true,
-        temGatos: true,
-        tipo: "ong", // ESSENCIAL!
-      },
-
-      
-    ]
-  : [];
+  const ongs = ongsPublicadas.map((ong, index) => ({
+    id: index + 1,
+    nome: ong.nome,
+    localizacao: ong.localizacao,
+    contato: ong.telefone,
+    descricao: ong.descricao,
+    imgSrc: ong.imagem,
+    fotos: ong.fotos,
+    temCaes: true, 
+    temGatos: true,
+    tipo: "ong",
+  }));
+  
 
   const handleFiltroChange = (novosFiltros) => {
     setFiltros(novosFiltros);
@@ -70,7 +65,7 @@ const ONG = () => {
                 key={ong.id}
                 item={ong}
                 botaoTexto="Localizar"
-                onClick={() => setOngSelecionada(ong)} // <-- abre modal
+                onClick={() => setOngSelecionada(ong)} 
               />
             ))}
           </div>
