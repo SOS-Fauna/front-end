@@ -1,31 +1,36 @@
 import { useState } from "react";
 import "../../styles/Perfil_Ong.css";
-import {FaHome, FaAt, FaEdit } from "react-icons/fa"; 
-import { IoCall } from "react-icons/io5";
 import ModalAtualizacaoDenuncia from "../../components/perfil_ong/ModalAtualizaçãoDenuncia";
+import SobreOng from "../../components/perfil_ong/SobreOng";
+import DadosOng from "../../components/perfil_ong/DadosOng";
+import FotosPerfil_Ong from "../../components/perfil_ong/FotosPerfil_Ong";
 
 const PerfilOng = () => {
   const [nome, setNome] = useState("Nome da ONG");
   const [descricao, setDescricao] = useState("Descrição da ONG");
   const [imagem, setImagem] = useState(null);
-  const [fotos, setFotos] = useState([null, null, null]);
   const [dados, setDados] = useState(["", "", ""]);
-  const [animais, setAnimais] = useState([
-  ]);
+  const [fotos, setFotos] = useState([null, null, null]);
   const [editando, setEditando] = useState(null);
   const [denuncias, setDenuncias] = useState([
     {
       id: 1,
-      data: "15/05/2023", assunto: "Animal abandonado", protocolo: "PROT-2023-001",
-      descricao: "Cachorro abandonado na rua assis", status: "Pendente", arquivos: []
+      data: "15/05/2023",
+      assunto: "Animal abandonado",
+      protocolo: "PROT-2023-001",
+      descricao: "Cachorro abandonado na rua assis",
+      status: "Pendente",
+      arquivos: [],
     },
     {
       id: 2,
-      data: "10/05/2023", assunto: "Maus tratos", protocolo: "PROT-2023-002", descricao: "Cavalo sendo maltratado na fazenda111",
-      status: "Em andamento", arquivos: []
-    }
-
-
+      data: "10/05/2023",
+      assunto: "Maus tratos",
+      protocolo: "PROT-2023-002",
+      descricao: "Cavalo sendo maltratado na fazenda111",
+      status: "Em andamento",
+      arquivos: [],
+    },
   ]);
 
   const [denunciaSelecionada, setDenunciaSelecionada] = useState(null);
@@ -33,17 +38,15 @@ const PerfilOng = () => {
 
   const handleSaveDenuncia = (denunciaAtualizada) => {
     setDenuncias((prevDenuncias) =>
-      prevDenuncias.map((d) => (d.id === denunciaAtualizada.id ? denunciaAtualizada : d))
+      prevDenuncias.map((d) =>
+        d.id === denunciaAtualizada.id ? denunciaAtualizada : d
+      )
     );
   };
 
+  const [publicado, setPublicado] = useState(false);
+  const [alterado, setAlterado] = useState(false);
 
-  const handleSalvar = () => {
-    alert("Dados salvos e publicados no ambiente público!");
-  };
-  const handleDeleteAnimal = (id) => {
-    setAnimais(animais.filter(animal => animal.id !== id));
-  };
   const [paginaAtual, setPaginaAtual] = useState(1);
   const itensPorPagina = 3;
   const indiceInicial = (paginaAtual - 1) * itensPorPagina;
@@ -51,132 +54,100 @@ const PerfilOng = () => {
   const denunciasPaginadas = [...denuncias].slice(indiceInicial, indiceFinal);
   const totalPaginas = Math.ceil(denuncias.length / itensPorPagina);
 
+  const [mensagem, setMensagem] = useState("");
+
+
+  const salvarPerfil = () => {
+    setPublicado(true);
+    setAlterado(false);
+  
+    try {
+      let ongsSalvas = JSON.parse(localStorage.getItem("ongsPublicadas")) || [];
+  
+      const imagemValida =
+        typeof imagem === "string" &&
+        (imagem.startsWith("blob:") || imagem.startsWith("data:"))
+          ? ""
+          : imagem;
+  
+      const fotosValidas = fotos.map((foto) =>
+        typeof foto === "string" &&
+        (foto.startsWith("blob:") || foto.startsWith("data:"))
+          ? ""
+          : foto
+      );
+  
+      const dadosFiltrados = {
+        nome,
+        descricao,
+        localizacao: dados[0],
+        telefone: dados[1],
+        redesSociais: dados[2],
+        imagem: imagemValida,
+        fotos: fotosValidas,
+      };
+  
+      const indexExistente = ongsSalvas.findIndex((ong) => ong.nome === nome);
+  
+      if (indexExistente !== -1) {
+        ongsSalvas[indexExistente] = dadosFiltrados;
+      } else {
+        ongsSalvas.push(dadosFiltrados);
+      }
+  
+      localStorage.setItem("ongsPublicadas", JSON.stringify(ongsSalvas));
+      setMensagem("Perfil publicado com sucesso!");
+    } catch (error) {
+      console.error("Erro ao salvar no localStorage:", error);
+      setMensagem("Erro ao publicar o perfil.");
+    }
+  
+    setTimeout(() => setMensagem(""), 3000); 
+  };
+  
+  
 
   return (
     <div className="perfil-container">
-      <section className="sobre">
-        <div className="sobre-text">
-          {editando === "nome" ? (
-            <input
-              type="text" value={nome} onChange={(e) => setNome(e.target.value)}
-              onBlur={() => setEditando(null)}
-              autoFocus
-            />
-          ) : (
-            <h1 onClick={() => setEditando("nome")}>
-              {nome} <FaEdit className="edit-icon" />
-            </h1>
-          )}
+      {mensagem && <div className="mensagem-flutuante">{mensagem}</div>}
 
-          {editando === "descricao" ? (
-            <textarea
-              value={descricao}
-              onChange={(e) => setDescricao(e.target.value)}
-              onBlur={() => setEditando(null)}
-              autoFocus
-            />
-          ) : (
-            <p onClick={() => setEditando("descricao")}>
-              {descricao} <FaEdit className="edit-icon" />
-            </p>
-          )}
-          <div className="sobre-imagem">
-            <label className="imagem-label">
-              {imagem ? (
-                <div className="imagem-wrapper">
-                  <img src={imagem} alt="Foto da ONG" />
-                  <button className="remover-imagem" onClick={() => setImagem(null)}>
-                    ✖
-                  </button>
-                </div>
-              ) : (
-                <div className="foto-placeholder">📷</div>
-              )}
-              <input type="file" accept="image/*" onChange={(e) => setImagem(URL.createObjectURL(e.target.files[0]))} />
-            </label>
-          </div>
-        </div>
-      </section>
+      <SobreOng
+        nome={nome}
+        setNome={(valor) => {
+          setNome(valor);
+          setAlterado(true);
+        }}
+        descricao={descricao}
+        setDescricao={(valor) => {
+          setDescricao(valor);
+          setAlterado(true);
+        }}
+        imagem={imagem}
+        setImagem={(valor) => {
+          setImagem(valor);
+          setAlterado(true);
+        }}
+        editando={editando}
+        setEditando={setEditando}
+      />
 
-<section className="dados">
-  <h1>Atualize seus dados:</h1>
-  <p>(Clique no ícone para editar os dados)</p>
-  <div className="dados-container">
-    {[
-      { icon: <FaHome />, alt: "Localização" },
-      { icon: <IoCall />, alt: "Contato" },
-      { icon: <FaAt />, alt: "Rede Social" },
-    ].map((item, index) => (
-      <div className="dados-item" key={index}>
-        <span className="dados-icone">{item.icon}</span> 
-        {editando === index ? (
-          <input
-            type="text"
-            value={dados[index] || ""}
-            onChange={(e) => {
-              const novoArray = [...dados];
-              novoArray[index] = e.target.value;
-              setDados(novoArray); 
-            }}
-            onBlur={() => setEditando(null)} 
-            autoFocus
-          />
-        ) : (
-          <p onClick={() => setEditando(index)}> 
-            {dados[index] || "Clique para adicionar"}{" "}
-            <FaEdit className="edit-icon" /> 
-          </p>
-        )}
-      </div>
-    ))}
-  </div>
-</section>
+      <DadosOng
+        dados={dados}
+        setDados={(valor) => {
+          setDados(valor);
+          setAlterado(true);
+        }}
+        editando={editando}
+        setEditando={setEditando}
+      />
 
-
-      <section className="fotos-perfil">
-        <h1>Fotos de perfil</h1>
-        <p>Adicione fotos da sua instituição para os usuários avaliarem</p>
-        <div className="fotos-container">
-          {fotos.map((foto, index) => (
-            <div key={index} className="foto-box">
-              {foto ? (
-                <div className="imagem-wrapper">
-                  <img src={foto} alt={`Foto ${index + 1}`} />
-                  <button
-                    className="remover-imagem"
-                    onClick={() => {
-                      const novasFotos = [...fotos];
-                      novasFotos[index] = null;
-                      setFotos(novasFotos);
-                    }}
-                  >
-                    ✖
-                  </button>
-                </div>
-              ) : (
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => {
-                    const file = e.target.files[0];
-                    if (file) {
-                      const reader = new FileReader();
-                      reader.onloadend = () => {
-                        const novasFotos = [...fotos];
-                        novasFotos[index] = reader.result;
-                        setFotos(novasFotos);
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  }}
-                  className="input-file"
-                />
-              )}
-            </div>
-          ))}
-        </div>
-      </section>
-
+      <FotosPerfil_Ong
+        fotos={fotos}
+        setFotos={(valor) => {
+          setFotos(valor);
+          setAlterado(true);
+        }}
+      />
 
       <section className="denuncias-container">
         <h2>Atualizações de Denuncias</h2>
@@ -199,7 +170,11 @@ const PerfilOng = () => {
                   <td data-label="Assunto">{denuncia.assunto}</td>
                   <td data-label="Protocolo">{denuncia.protocolo}</td>
                   <td data-label="Status">
-                    <span className={`status-badge ${denuncia.status.toLowerCase().replace(' ', '-')}`}>
+                    <span
+                      className={`status-badge ${denuncia.status
+                        .toLowerCase()
+                        .replace(" ", "-")}`}
+                    >
                       {denuncia.status}
                     </span>
                   </td>
@@ -218,8 +193,6 @@ const PerfilOng = () => {
               ))}
             </tbody>
           </table>
-
-
         </div>
 
         {mostrarModal && denunciaSelecionada && (
@@ -232,10 +205,13 @@ const PerfilOng = () => {
       </section>
 
       <div className="perfil-salvar">
-        <button className="btn-salvar" onClick={handleSalvar}>Salvar</button>
+        {alterado && (
+          <button className="btn-salvar" onClick={salvarPerfil}>
+            {publicado ? "Atualizar Perfil" : "Publicar Perfil"}
+          </button>
+        )}
       </div>
     </div>
-
   );
 };
 

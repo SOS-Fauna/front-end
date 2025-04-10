@@ -1,0 +1,41 @@
+.carrossel-fotos {
+    position: relative;
+    width: 100%;
+    max-width: 450px;
+    margin: 2rem auto;
+  }
+  
+  .imagem-carrossel {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    display: block;
+  }
+  
+  .seta {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    font-size: 2.0rem;
+    cursor: pointer;
+    color: #444;
+    z-index: 2;
+    padding: 0;
+    transition: transform 0.2s ease;
+  }
+  
+  .seta:hover {
+    transform: translateY(-50%) scale(1.1);
+  }
+  
+  .seta.esquerda {
+    left: 10px;
+  }
+  
+  .seta.direita {
+    right: 10px;
+  }
+  

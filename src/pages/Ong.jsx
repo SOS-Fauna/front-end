@@ -3,18 +3,27 @@ import "../styles/Ong.css";
 import Paginacao from "../components/Paginacao";
 import Card from "../components/Card";
 import Filtro from "../components/Filtro";
-import ong2 from '../assets/ong2.jpeg'
+import ModalCard from "../components/ModalCard"; 
 
 const ONG = () => {
   const [filtros, setFiltros] = useState({});
   const [paginaAtual, setPaginaAtual] = useState(1);
+  const [ongSelecionada, setOngSelecionada] = useState(null); 
+  const ongsPublicadas = JSON.parse(localStorage.getItem("ongsPublicadas")) || [];
 
-  const ongs = [
-    { id: 1, imgSrc: ong2, nome: "Amigos dos Animais", localizacao: "Recife", contato: "(81) 99999-9999" },
-    { id: 2, imgSrc: ong2, nome: "Coração Peludo", localizacao: "Olinda", contato: " (81) 98888-8888" },
-    { id: 3, imgSrc: ong2, nome: "Patinhas Felizes", localizacao: "Paulista", contato: " (81) 97777-7777" },
-    
-  ];
+  const ongs = ongsPublicadas.map((ong, index) => ({
+    id: index + 1,
+    nome: ong.nome,
+    localizacao: ong.localizacao,
+    contato: ong.telefone,
+    descricao: ong.descricao,
+    imgSrc: ong.imagem,
+    fotos: ong.fotos,
+    temCaes: true, 
+    temGatos: true,
+    tipo: "ong",
+  }));
+  
 
   const handleFiltroChange = (novosFiltros) => {
     setFiltros(novosFiltros);
@@ -46,23 +55,36 @@ const ONG = () => {
               { nome: "Bairro", label: "Bairro", opcoes: ["Recife", "Olinda", "Paulista"] },
               { nome: "Apenas Cães", label: "Apenas Cães", opcoes: ['Sim', 'Não'] },
               { nome: "Apenas Gatos", label: "Apenas Gatos", opcoes: ['Sim', 'Não'] },
-
-
             ]}
             onFiltroChange={handleFiltroChange}
           />
+
           <div className="container-ongs">
             {ongsPagina.map((ong) => (
-              <Card key={ong.id} item={ong} botaoTexto="Localizar" />
+              <Card
+                key={ong.id}
+                item={ong}
+                botaoTexto="Localizar"
+                onClick={() => setOngSelecionada(ong)} 
+              />
             ))}
           </div>
         </div>
+
         <Paginacao
           paginaAtual={paginaAtual}
           totalPaginas={totalPaginas}
           onMudarPagina={setPaginaAtual}
         />
       </div>
+
+      {ongSelecionada && (
+        <ModalCard
+          item={ongSelecionada}
+          fecharModal={() => setOngSelecionada(null)}
+          botaoTexto="Ver Mais"
+        />
+      )}
     </>
   );
 };

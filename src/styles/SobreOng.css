@@ -1,0 +1,85 @@
+.sobre {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+    margin-bottom: 5rem;
+    align-items: center;
+  
+  }
+  
+  .sobre-text {
+    order: 1;
+    text-align: left;
+  }
+  
+  .sobre-text h1 {
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1rem; 
+  }
+  
+  .sobre-text p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-top: 0.5rem;
+    max-width: 45ch; 
+    word-wrap: break-word;
+  }
+  
+  .sobre-imagem {
+    width: 350px;
+    height: 250px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+  }
+  
+  .sobre-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .sobre-imagem input {
+    display: none; 
+  }
+  
+  .sobre-imagem:not(:has(img)) {
+    border: 2px dashed #ccc;
+  }
+  
+  .foto-placeholder {
+    font-size: 40px;
+    color: #888;
+    cursor: pointer;
+  }
+  .imagem-label {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: relative;
+  }
+  .remover-imagem {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
